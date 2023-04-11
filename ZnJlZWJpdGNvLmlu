@@ -27,10 +27,11 @@ target:c();ket("","target claim bonus");
 for($k=0;$k<50;$k++){$daf=$js[$k];
 if($daf->category=="fp_bonus"){
 ket_line($k,$daf->product_name,"price",$daf->points." points");}}
+ket(123,"skip");
 $pil=preg_replace("/[^0-9]/","",tx("number")).line();
 $bonus=$js[$pil];
-if($bonus->category=="fp_bonus"){print h."ok";r();}else{goto target;}
-
+if($pil==123){goto start;}elseif($bonus->category=="fp_bonus"){print h."ok";r();}else{goto target;}
+start:
 c().asci(sc).ket("email",$r["email"],"address",$h_post["btc_address"],"balance",$r["balance"]).line();
 
 back:
