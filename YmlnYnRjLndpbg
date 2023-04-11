@@ -8,15 +8,16 @@ DATA:
 $u_a=save("useragent");
 $u_c=save($asu);
 
+
+$r=base_run(host."faucet");
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["logout"]==null){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}
 methode:
 $methode=[1=>"apikey_captchaai",2=>"apikey_anycaptcha"];
 c().ket("","bypass methode",1,"captchaai",2,"anycaptcha");
 $pilih=tx("number").line();
 if($methode[$pilih]==null){goto methode;}
 $apikey=save($methode[$pilih]);
-
-$r=base_run(host."faucet");
-if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["logout"]==null){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}c().asci(sc).ket("address",$r["address"],"balance",$r["balance"]).line();
+c().asci(sc).ket("address",$r["address"],"balance",$r["balance"]).line();
 
 back:
 while(true){$r=base_run(host."faucet");
