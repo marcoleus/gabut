@@ -31,7 +31,7 @@ if($cap==null){goto back;}
 $data=http_build_query(["csrf_token"=>$csrf_token,"op"=>"free_play","fingerprint"=>"661fab4119232bdd217e3e81e8a6809c","client_seed"=>hash(hash_algos()[35],uniqid(true),false),"fingerprint2"=>893256472,"pwc"=>0,"h_recaptcha_response"=>$cap]);
 $r2=base_run(host,$data);
 if($r2["reward"]){
-ket_line("number",$r2["number"],"t/p",$r2["earn_tiket"]."/".$r2["earn_poin"],"claim",$r2["reward"]).ket_line("balance",$r2["balance"]." BTC","point",$r2["point"]).line();
+ket_line("number",$r2["number"],"t/p",$r2["earn_tiket"]."/".$r2["earn_poin"],"claim",$r2["reward"]).ket_line("balance",$r2["new_balance"]." BTC","point",$r2["point"]).line();
 tmr(1,60*60+5);}else{print m."invalid captcha";r();}}}
 
 
@@ -47,7 +47,7 @@ preg_match_all('#(title_countdown)(.*?)([0-9]{4}|[0-9]{3}|[0-9]{2}|[0-9]{1})(.*?
 $ex=explode(":",$r);
 //print_r($logout);
 //die(print_r($username));
-return ["res"=>$r,"cloudflare"=>$cloudflare[0],"logout"=>$logout[0],"email"=>$email[1],"address"=>$r_m[2][0],"balance"=>$balance[1],"time"=>$tmr[3][0],"number"=>$ex[1],"reward"=>$ex[3],"point"=>$ex[14],"earn_tiket"=>$ex[15],"earn_poin"=>$ex[16]];}
+return ["res"=>$r,"cloudflare"=>$cloudflare[0],"logout"=>$logout[0],"email"=>$email[1],"address"=>$r_m[2][0],"balance"=>$balance[1],"time"=>$tmr[3][0],"number"=>$ex[1],"new_balance"=>$ex[2],"reward"=>$ex[3],"point"=>$ex[14],"earn_tiket"=>$ex[15],"earn_poin"=>$ex[16]];}
 
 function head($data=0){global $csrf_token,$u_a,$u_c;
 $h[]="Host: freebitco.in";
