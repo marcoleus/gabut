@@ -43,7 +43,8 @@ if($cap==null){goto back;}
 $data=http_build_query(["csrf_token"=>$csrf_token,"op"=>"free_play","fingerprint"=>"661fab4119232bdd217e3e81e8a6809c","client_seed"=>hash(hash_algos()[35],uniqid(true),false),"fingerprint2"=>893256472,"pwc"=>0,"h_recaptcha_response"=>$cap]);
 $r2=base_run(host,$data);
 if($r2["reward"]){
-ket_line("number",$r2["number"],"t/p",$r2["earn_tiket"]."/".$r2["earn_poin"],"claim",$r2["reward"]." BTC").ket_line("balance",$r2["new_balance"]." BTC","point",$r2["point"]).line();tmr(1,60*60+5);if($r2["point"] >= preg_replace("/[^0-9]/","",$bonus->points)){goto bonus;}}else{print m."invalid captcha";r();}}}
+ket_line("number",$r2["number"],"t/p",$r2["earn_tiket"]."/".$r2["earn_poin"],"claim",$r2["reward"]." BTC").ket_line("balance",$r2["new_balance"]." BTC","point",$r2["point"]).line();tmr(1,60*60+5);
+if($bonus){if($r2["point"] >= preg_replace("/[^0-9]/","",$bonus->points)){goto bonus;}}}else{print m."invalid captcha";r();}}}
 
 bonus:
 print h.base_run(host."cf_stats_public/?".http_build_query(["op"=>"redeem_rewards","id"=>$bonus->product_type,"points"=>preg_replace("/[^0-9]/","",$bonus>points),"tickets"=>"","csrf_token"=>$csrf_token]))["number"].n;line();goto back;
