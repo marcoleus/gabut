@@ -14,6 +14,19 @@ $r=base_run(host."?op=home");
 if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["logout"]==null){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}
 $js=base_run(host."cf_stats_public/?".http_build_query(["f"=>"public_stats_initial","csrf_token"=>$csrf_token]))["json"]->rp_prizes;
 
+target:c();ket("","target claim bonus");
+for($k=0;$k<50;$k++){$daf=$js[$k];
+if($daf->category=="fp_bonus"){
+ket_line($k,$daf->product_name,"price",$daf->points." points");}}
+ket(123,"skip");
+$pil=preg_replace("/[^0-9]/","",tx("number")).line();
+$bonus=$js[$pil];
+if($pil==123){goto methode;}elseif($bonus->category=="fp_bonus"){goto bonus;}else{goto target;}
+
+bonus:
+if($bonus){if($r["point"][0] >= preg_replace("/[^0-9]/","",$bonus->points)){
+print h.base_run(host."cf_stats_public/?".http_build_query(["op"=>"redeem_rewards","id"=>$bonus->product_type,"points"=>preg_replace("/[^0-9]/","",$bonus>points),"tickets"=>"","csrf_token"=>$csrf_token]))["number"].n;line();}}
+
 methode:
 $methode=[1=>"apikey_captchaai",2=>"apikey_anycaptcha"];
 c().ket("","bypass methode",1,"captchaai",2,"anycaptcha");
@@ -22,21 +35,8 @@ $pilih=tx("number").line();
 if($methode[$pilih]==null){goto methode;}
 $apikey=save($methode[$pilih]);
 
-target:c();ket("","target claim bonus");
-for($k=0;$k<50;$k++){$daf=$js[$k];
-if($daf->category=="fp_bonus"){
-ket_line($k,$daf->product_name,"price",$daf->points." points");}}
-ket(123,"skip");
-$pil=preg_replace("/[^0-9]/","",tx("number")).line();
-$bonus=$js[$pil];
-if($pil==123){goto start;}elseif($bonus->category=="fp_bonus"){goto bonus;}else{goto target;}
-
-bonus:
-if($bonus){if($r["point"][0] >= preg_replace("/[^0-9]/","",$bonus->points)){
-print h.base_run(host."cf_stats_public/?".http_build_query(["op"=>"redeem_rewards","id"=>$bonus->product_type,"points"=>preg_replace("/[^0-9]/","",$bonus>points),"tickets"=>"","csrf_token"=>$csrf_token]))["number"].n;line();}}
 
 
-start:
 c().asci(sc).ket("email",$r["email"],"address",$h_post["btc_address"],"balance",$r["balance"][0]).line();
 
 back:
