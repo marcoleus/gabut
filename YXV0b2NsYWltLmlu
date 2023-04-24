@@ -81,7 +81,7 @@ preg_match_all('#<form name="visit(.*?)"#is',$r[1],$id);
 preg_match_all('#id="views">(.*?)/#is',$r[1],$left);
 preg_match_all('#hidden" name="(.*?)" value="(.*?)"#is',$r[1],$t_cs);
 preg_match('#content="(.*?)"#is',$r[1],$tmr);
-preg_match('#class="(alert alert-success" style="margin: 30px;" role="alert"|fas fa-check green"></i)>(.*?)(.</p>|. <script)#is',$r[1],$n_r);
+preg_match('#class="(alert alert-success" style="margin: 30px;" role="alert"|fas fa-check green"></i)>(.*?)(.</p>|</div>)#is',$r[1],$n_r);
 
 
 
