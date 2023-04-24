@@ -45,7 +45,6 @@ $res=visit_short($r)[explode("/",host)[2]];
 if($res["id"]==null){lah();goto auto;}
 $r1=base_run($res["url"],$res["data"]);
 if($r1["url"]==null){goto shortlinks;}
-print $r["name"][$res["no"]].n.$r1["url"].n;
 $bypas=bypas_short($r["name"][$res["no"]],$r1["url"]);
 if($bypas==null){goto shortlinks;}
 $r3=base_run($bypas);
