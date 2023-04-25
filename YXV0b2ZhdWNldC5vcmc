@@ -84,7 +84,6 @@ preg_match('#content="(.*?)"#is',$r[1],$tmr);
 preg_match('#class="(alert alert-success" style="margin: 30px;" role="alert"|fas fa-check green"></i)>(.*?)(.</p>|. <script)#is',$r[1],$n_r);
 
 
-
 //print_r($amn);
 //die(print_r());
 return ["res"=>$r[1],"cloudflare"=>$cloudflare[0],"logout"=>$logout[0],"username"=>$username[1],"balance"=>strip_tags($balance[1]),"status"=>$status[1],"id"=>$id[1],"left"=>$left[1],"name"=>$name[1],
