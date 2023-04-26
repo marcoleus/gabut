@@ -47,8 +47,9 @@ $res=visit_short($r)[explode("/",host)[2]];
 if($res["id"]==null){lah();goto auto;}
 $r1=base_run($res["url"],$res["data"]);
 if($r1["url"]==null){goto shortlinks;}
+print k."bypass url: ".p.$r1["url"].n;refresh:
 $bypas=bypass_shortlinks($r1["url"]);
-if($bypas==null){goto shortlinks;}
+if($bypas==null){goto refresh;}
 $r3=base_run($bypas);
 if($r3["notif"]){print h.$r3["notif"].n;line().ket("balance",$r3["balance"]).line();}}
 
