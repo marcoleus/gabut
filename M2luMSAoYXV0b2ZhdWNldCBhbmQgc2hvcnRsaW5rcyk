@@ -108,7 +108,7 @@ return ["res"=>$r[1],"cloudflare"=>$cloudflare[0],"logout"=>$logout[0],"username
 function target(){
 date_default_timezone_set('Asia/Jakarta');
 for($x=10;$x<25;$x++){
-if(host=="autofaucet.org"){$t="08";}
-if(host=="autoclaim.in"){$t="15";}
-if(host=="autobitco.in"){$t="01";}
+if(host=="autofaucet"){$t="08";}
+elseif(host=="autoclaim"){$t="15";}
+elseif(host=="autobitco"){$t="01";}
 if(date("Hi")==$t.$x){return "reset";}}}
