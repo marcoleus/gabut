@@ -44,7 +44,7 @@ $r=base_run(host."dashboard/shortlinks");
 if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif(!$r["logout"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}c().asci(sc).ket("username",$r["username"],"balance",$r["balance"]).line();
 
 shortlinks:
-while(true){include("config.php");
+while(true){eval("config.php");
 $r=base_run(host."dashboard/shortlinks");
 if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif(!$r["logout"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}
 if($r["status"]==1){base_run(host."verify/hshort",http_build_query(["status"=>1]));goto shortlinks;}
