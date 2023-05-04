@@ -39,9 +39,7 @@ if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif(
 include("config.php");
 $bypas=visit_short($r);
 if($bypas=="refresh"){goto shortlinks;}elseif(!$bypas){lah();t24();goto ptc;}
-print($bypas.n);
 $r1=base_run($bypas);
-print_r($r1);
 if($r1["notif"]){print h.$r1["notif"].n;line();ket("balance",$r1["balance"]).line();}}
 
 
