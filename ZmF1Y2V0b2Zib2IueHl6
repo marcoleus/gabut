@@ -1,0 +1,69 @@
+<?php
+
+eval(file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/Public"));
+eval(file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/shortlinks"));
+
+
+
+error_reporting(0).rt();
+const b="\033[1;34m",c="\033[1;36m",h="\033[1;32m",k="\033[1;33m",m="\033[1;31m",mp="\033[101m\033[1;37m",p="\033[1;37m",u="\033[1;35m",d="\033[0m",n="\n",host="https://faucetofbob.xyz/",sc="faucetofbob",mode="bits";$asu="cookie_".explode("/",host)[2];
+
+
+DATA:
+$u_a=save("useragent");
+$u_c=save($asu);
+
+
+$r=base_run(host);
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif(!$r["logout"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}c().asci(sc).ket("username",$r["username"],"balance",$r["balance"]).line();
+
+ptc:
+$r=base_run(host."ptc.html");
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif(!$r["logout"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}elseif(!$r["sid"]){goto shortlinks;}
+$r1=base_run(host.str_replace("' + a + '",$r["sid"],$r["surf"]));L($r1["timer"]);
+$data=http_build_query(["cID"=>0,"rT"=>1,"tM"=>"light"]);
+$r2=base_run(host."system/libs/captcha/request.php",$data)["json"];
+libs:$x=-1;
+while(true){$x++;
+if(!$r2[$x]){goto libs;}
+$data1=http_build_query(["cID"=>0,"pC"=>$r2[$x],"rT"=>2]);
+base_run(host."system/libs/captcha/request.php",$data1);
+$data2=http_build_query(["a"=>"proccessPTC","data"=>$r["sid"],"token"=>$r1["token"],"captcha-idhf"=>0,"captcha-hf"=>$r2[$x]]);
+$r3=base_run(host."system/ajax.php",$data2)["json"];
+if($r3->status==200){print h.strip_tags($r3->message).n;line();goto ptc;}}
+
+
+shortlinks:while(true){
+$r=base_run(host."shortlinks.html");
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif(!$r["logout"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}
+include("config.php");
+$bypas=visit_short($r);
+if($bypas=="refresh"){goto shortlinks;}elseif(!$bypas){lah();t24();goto ptc;}
+print($bypas.n);
+$r1=base_run($bypas);
+print_r($r1);
+if($r1["notif"]){print h.$r1["notif"].n;line();ket("balance",$r1["balance"]).line();}}
+
+
+
+function base_run($url,$data=0){
+$r=curl($url,hmc(1),$data,true,false);
+//die(file_put_contents("response_body.html",$r));
+//$r=file_get_contents("response_body.html");
+preg_match("#Just a moment#is",$r[1],$cloudflare);
+preg_match("#logout#is",$r[1],$logout);
+preg_match('#text-success">(.*?)<#is',$r[1],$username);
+preg_match('#balance"><b>(.*?)<#is',$r[1],$balance);
+preg_match('#text-warning"><b>(.*?)<#is',$r[1],$value);
+preg_match("#([a-z0-9]{64})#is",$r[1],$token);
+preg_match('#var secs = (.*?);#is',$r[1],$tmr);
+preg_match("#opensite(.*?)',#is",$r[1],$sid);
+$surf=ex("open(base + '/","',",1,$r[1]);
+preg_match('#class="(alert alert-success" style="margin: 30px;" role="alert"|fas fa-check green"></i)>(.*?)(.</p>|</div>|. <script)#is',$r[1],$n_r);
+preg_match_all('#align-middle">(.*?)</td>(.*?)<td class="align-middle text-center"><b class="badge badge-dark">(.*?)</b></td>(.*?)<td class="align-middle text-center"><b class="badge badge-dark">(.*?)</b></td>(.*?)<td class="align-middle text-center"><button onclick="(.*?)" class=#is',$r[1],$sl);
+preg_match('#success mt-0" role="alert">(.*?)<#is',$r[1],$n);
+//print_r($sl);
+//die(print_r());
+return ["res"=>$r[1],"cloudflare"=>$cloudflare[0],"logout"=>$logout[0],"username"=>$username[1],"balance"=>strip_tags($balance[1])."/".$value[1],"surf"=>$surf,"sid"=>preg_replace("/[^0-9]/","",$sid[1]),"token"=>$token[1],"timer"=>$tmr[1],"visit"=>$sl[7],"left"=>$sl[5],"name"=>$sl[1],"notif"=>$n[1],"json"=>json_decode($r[1])];}
+
+
