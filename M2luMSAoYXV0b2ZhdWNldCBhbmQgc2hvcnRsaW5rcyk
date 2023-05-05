@@ -1,7 +1,7 @@
 <?php
 
 
-go:error_reporting(0).system("clear");
+go:error_reporting(0).system("cls").system("clear");print("\033[2J\033[;H");
 $web=[1=>"autofaucet.org",2=>"autoclaim.in",3=>"autobitco.in"];
 for($i=1;$i<4;$i++){
 if($web[$i]){print "\033[1;32m$i \033[1;36m> \033[1;32m".$web[$i]."\n";}}
@@ -13,6 +13,13 @@ if(!$host){goto go;}
 
 eval(file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/Public"));
 eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,base64_decode("ZXJyb3JfcmVwb3J0aW5nKDApLnJ0KCk7Y29uc3QgYj0iXDAzM1sxOzM0bSIsYz0iXDAzM1sxOzM2bSIsaD0iXDAzM1sxOzMybSIsaz0iXDAzM1sxOzMzbSIsbT0iXDAzM1sxOzMxbSIsbXA9IlwwMzNbMTAxbVwwMzNbMTszN20iLHA9IlwwMzNbMTszN20iLHU9IlwwMzNbMTszNW0iLGQ9IlwwMzNbMG0iLG49IlxuIixob3N0PSJodHRwczovL2V4YW1wbGUvIixzYz0ibmFtZV9ob3N0Iixtb2RlPSIzaW4xIjskYXN1PWV4cGxvZGUoIi8iLGhvc3QpWzJdOw=="))));
+methode:
+$methode=methode_captcha();
+c().ket("","bypass methode",1,$methode[1],2,$methode[2]);
+$request_captcha=tx("number").line();
+if(!$methode[$request_captcha]){goto methode;}
+eval(str_replace("request_captcha(",$methode[$request_captcha]."(",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/shortlinks")));
+
 
 DATA:
 $u_a=save("useragent");
@@ -33,13 +40,6 @@ for($i=1;$i<5;$i++){ket($i,$i."x boost");}line();
 $bs=tx("number").line();
 preg_match("([0-4]{1})",$bs,$boost);
 if($bs==0 or !$boost[0]){goto boost;}
-
-methode:
-$methode=methode_captcha();
-c().ket("","bypass methode",1,$methode[1],2,$methode[2]);
-$request_captcha=tx("number").line();
-if(!$methode[$request_captcha]){goto methode;}
-eval(str_replace("request_captcha(",$methode[$request_captcha]."(",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/shortlinks")));
 
 
 $r=base_run(host."dashboard/shortlinks");
