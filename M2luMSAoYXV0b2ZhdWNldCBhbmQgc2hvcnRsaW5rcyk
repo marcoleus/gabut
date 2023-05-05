@@ -12,12 +12,13 @@ if(!$host){goto go;}
 
 
 eval(file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/Public"));
-eval(file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/shortlinks"));
-
-
-
 eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,base64_decode("ZXJyb3JfcmVwb3J0aW5nKDApLnJ0KCk7Y29uc3QgYj0iXDAzM1sxOzM0bSIsYz0iXDAzM1sxOzM2bSIsaD0iXDAzM1sxOzMybSIsaz0iXDAzM1sxOzMzbSIsbT0iXDAzM1sxOzMxbSIsbXA9IlwwMzNbMTAxbVwwMzNbMTszN20iLHA9IlwwMzNbMTszN20iLHU9IlwwMzNbMTszNW0iLGQ9IlwwMzNbMG0iLG49IlxuIixob3N0PSJodHRwczovL2V4YW1wbGUvIixzYz0ibmFtZV9ob3N0Iixtb2RlPSIzaW4xIjskYXN1PWV4cGxvZGUoIi8iLGhvc3QpWzJdOw=="))));
-
+methode:
+$methode=[1=>"captchaai",2=>"azcaptcha"];
+c().ket("","bypass methode",1,$methode[1],2,$methode[2]);
+$request_captcha=tx("number").line();
+if(!$methode[$request_captcha]){goto methode;}
+die(str_replace("request_captcha(",$methode[$request_captcha]."(",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/shortlinks")));
 
 DATA:
 $u_a=save("useragent");
