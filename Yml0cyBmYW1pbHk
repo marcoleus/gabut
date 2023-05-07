@@ -17,7 +17,7 @@ $host=$web[$p];if(!$host){goto go;}
 
 $link=[$web[1]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
 $web[2]=>["faucet"=>"claim.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[3]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"solvemedia","run_faucet"=>"off"],
+$web[3]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
 $web[4]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","run_faucet"=>"off"]];
 
 
