@@ -20,7 +20,7 @@ $web[2]=>["faucet"=>"claim.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.htm
 $web[3]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
 $web[4]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","run_faucet"=>"off"],
 $web[5]=>["faucet"=>"faucet.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[6]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"]
+$web[6]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"hcaptcha","run_faucet"=>"on"]
 
 ];
 
@@ -102,6 +102,7 @@ preg_match("#Just a moment#is",$r[1],$cloudflare);
 preg_match("#logout#is",$r[1],$logout);
 preg_match("#Faucet Locked!#is",$r[1],$locked);
 preg_match('#data-sitekey="(.*?)"#is',$r[1],$recaptchav2);
+preg_match('#data-sitekey="(.*?)"#is',$r[1],$hcaptcha);
 preg_match('#(text-success)">(.*?)<#is',$r[1],$username);
 preg_match('#(text-primary|id="account_balance)"><b>(.*?)(<)#is',$r[1],$balance);
 preg_match('#(text-success|text-warning)"><b>(.*?)<#is',$r[1],$value);
@@ -119,7 +120,7 @@ preg_match('#(successmt-0"|alert-success mt-0" )role="alert">(.*?)<#is',$r[1],$n
 
 //print_r($sl);
 //die(print_r($sl));
-return ["res"=>$r[1],"cloudflare"=>$cloudflare[0],"logout"=>$logout[0],"locked"=>$locked[0],"recaptchav2"=>$recaptchav2[1],"username"=>$username[2],"balance"=>strip_tags($balance[2])." / ".$value[2],"surf"=>$surf,"sid"=>preg_replace("/[^0-9]/","",$sid[1]),"token"=>$token[1],"timer"=>$tmr[2],"seconds"=>$seconds[1],"countdown"=>$countdown[2],"visit"=>$sl[5],"left"=>$sl[3],"name"=>$sl[1],"notif"=>$n[2],"json"=>json_decode($r[1])];}
+return ["res"=>$r[1],"cloudflare"=>$cloudflare[0],"logout"=>$logout[0],"locked"=>$locked[0],"recaptchav2"=>$recaptchav2[1],"hcaptcha"=>$hcaptcha[1],"username"=>$username[2],"balance"=>strip_tags($balance[2])." / ".$value[2],"surf"=>$surf,"sid"=>preg_replace("/[^0-9]/","",$sid[1]),"token"=>$token[1],"timer"=>$tmr[2],"seconds"=>$seconds[1],"countdown"=>$countdown[2],"visit"=>$sl[5],"left"=>$sl[3],"name"=>$sl[1],"notif"=>$n[2],"json"=>json_decode($r[1])];}
 
 
 
