@@ -62,7 +62,7 @@ $data1=http_build_query(["cID"=>0,"pC"=>$r2[$x],"rT"=>2]);
 base_run(host."system/libs/captcha/request.php",$data1);
 $data2=http_build_query(["a"=>"proccessPTC","data"=>$r["sid"],"token"=>$r1["token"],"captcha-idhf"=>0,"captcha-hf"=>$r2[$x]]);
 $r3=base_run(host."system/ajax.php",$data2)["json"];
-if($r3->status==200){print h.strip_tags($r3->message).n;line();goto ptc;}elseif($r3->status==400){print m.strip_tags($r3->message.n);goto ptc;}}
+if($r3->status==200){print h.strip_tags($r3->message).n;line();goto ptc;}elseif($r3->status==400){print m.strip_tags($r3->message.n);base_run(host.$link[$host]["faucet"]);sleep(2);goto ptc;}}
 
 
 
@@ -101,7 +101,7 @@ $r1=base_run(host."system/ajax.php",$data)["json"];
 if($r1->reward==true){
 $reward=explode(", ",strip_tags($r1->message));
 print h.$reward[0];r();print h.$reward[1].n;line().ket("balance",base_run(host.$link[$host]["faucet"])["balance"]).line();tmr(1,$r["countdown"]*60+30);}else{
-if($r1->status==400){print m.strip_tags($r1->message.n);goto faucet;}
+if($r1->status==400){print m.strip_tags($r1->message.n);sleep(2);goto faucet;}
 print m.strip_tags($r1->message);r();goto refresh;}}
 
 
