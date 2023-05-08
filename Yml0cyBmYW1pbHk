@@ -43,6 +43,12 @@ if(!$methode[$request_captcha]){goto methode;}
 eval(str_replace("request_captcha(",$methode[$request_captcha]."(",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/shortlinks")));
 
 c().asci(sc).ket("username",$r["username"],"balance",$r["balance"]).line();
+
+xxnx:
+ket(1,"ptc -> shortlinks -> faucet",2,"faucet -> ptc -> shortlinks").line();
+$xxnx=tx("number").line();
+if($xxnx==1){goto ptc;}elseif($xxnx==2){goto faucet;}else{goto xxnx;}
+
 //goto shortlinks;
 
 ptc:$r=base_run(host.$link[$host]["ptc"]);
@@ -55,7 +61,7 @@ $data1=http_build_query(["cID"=>0,"pC"=>$r2[$x],"rT"=>2]);
 base_run(host."system/libs/captcha/request.php",$data1);
 $data2=http_build_query(["a"=>"proccessPTC","data"=>$r["sid"],"token"=>$r1["token"],"captcha-idhf"=>0,"captcha-hf"=>$r2[$x]]);
 $r3=base_run(host."system/ajax.php",$data2)["json"];
-if($r3->status==200){print h.strip_tags($r3->message).n;line();goto ptc;}elseif($r3->status==400){print m.strip_tags($r3->message);sleep(2);r();goto ptc;}}
+if($r3->status==200){print h.strip_tags($r3->message).n;line();goto ptc;}elseif($r3->status==400){print m.strip_tags($r3->message.n);goto ptc;}}
 
 
 
@@ -84,14 +90,18 @@ $r=base_run(host.$link[$host]["faucet"]);
 
 
 if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif(!$r["logout"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}elseif($r["locked"]){print m.$r["locked"].n;line();
-print p."Catatan!".n."jika proses bypass tidak ada di script silahkan".n."manual shortlinks terlebih dahulu di browser!".n;line();
+print p."Catatan!".n."jika proses bypass tidak ada di script silahkan".n."manual shortlinks terlebih dahulu di browser!".n;line().tx("enter to continue");
 L(5);goto ptc;}elseif($r["timer"]){tmr(1,$r["timer"]*60+30);goto faucet;}elseif($r["seconds"]){tmr(1,$r["seconds"]+20);goto faucet;}
 refresh:eval(str_replace("request_captcha(",$methode[$request_captcha]."(",'$cap=request_captcha($link[$host]["type"],$r[$link[$host]["type"]],host.$link[$host]["faucet"]);'));
 $data=http_build_query(["a"=>"getFaucet","token"=>$r["token"],"captcha"=>true,"challenge"=>false,"response"=>$cap]);
 $r1=base_run(host."system/ajax.php",$data)["json"];
+
+
 if($r1->reward==true){
 $reward=explode(", ",strip_tags($r1->message));
-print h.$reward[0];r();print h.$reward[1].n;line().ket("balance",base_run(host.$link[$host]["faucet"])["balance"]).line();tmr(1,$r["countdown"]*60+30);}else{print m.strip_tags($r1->message);r();goto refresh;}}
+print h.$reward[0];r();print h.$reward[1].n;line().ket("balance",base_run(host.$link[$host]["faucet"])["balance"]).line();tmr(1,$r["countdown"]*60+30);}else{
+if($r1->status==400){print m.strip_tags($r1->message.n);goto faucet;}
+print m.strip_tags($r1->message);r();goto refresh;}}
 
 
 function base_run($url,$data=0){
@@ -121,6 +131,5 @@ preg_match('#(successmt-0"|alert-success mt-0" )role="alert">(.*?)<#is',$r[1],$n
 //print_r($sl);
 //die(print_r($sl));
 return ["res"=>$r[1],"cloudflare"=>$cloudflare[0],"logout"=>$logout[0],"locked"=>$locked[0],"recaptchav2"=>$recaptchav2[1],"hcaptcha"=>$hcaptcha[1],"username"=>$username[2],"balance"=>strip_tags($balance[2])." / ".$value[2],"surf"=>$surf,"sid"=>preg_replace("/[^0-9]/","",$sid[1]),"token"=>$token[1],"timer"=>$tmr[2],"seconds"=>$seconds[1],"countdown"=>$countdown[2],"visit"=>$sl[5],"left"=>$sl[3],"name"=>$sl[1],"notif"=>$n[2],"json"=>json_decode($r[1])];}
-
 
 
