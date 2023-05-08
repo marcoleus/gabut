@@ -8,7 +8,7 @@ error_reporting(0);const b="\033[1;34m",c="\033[1;36m",h="\033[1;32m",k="\033[1;
 eval(file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/Public"));rt();const b="\033[1;34m",c="\033[1;36m",h="\033[1;32m",k="\033[1;33m",m="\033[1;31m",mp="\033[101m\033[1;37m",p="\033[1;37m",u="\033[1;35m",d="\033[0m",n="\n";
 
 
-go:c();$web=[1=>"btccanyon.com",2=>"nevcoins.club",3=>"claimlite.club",4=>"faucetofbob.xyz",5=>"claimfreecoins.cc",6=>"bitcaps.io"];
+go:c();$web=[1=>"btccanyon.com",2=>"nevcoins.club",3=>"claimlite.club",4=>"faucetofbob.xyz",5=>"claimfreecoins.cc",6=>"ltchunt.com"];
 for($i=1;$i<10;$i++){if($web[$i]){ket($i,$web[$i]);}}
 $p=preg_replace("/[^0-9]/","",trim(tx("number")));
 $host=$web[$p];if(!$host){goto go;}
@@ -20,7 +20,7 @@ $web[2]=>["faucet"=>"claim.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.htm
 $web[3]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
 $web[4]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","run_faucet"=>"off"],
 $web[5]=>["faucet"=>"faucet.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[6]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"hcaptcha","run_faucet"=>"on"]
+$web[6]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"]
 
 ];
 
