@@ -113,7 +113,7 @@ $r=curl($url,hmc(1),$data,true,false);
 //die(file_put_contents("response_body.html",$r));
 //$r=file_get_contents("response_body.html");
 preg_match("#Just a moment#is",$r[1],$cloudflare);
-preg_match("#(signup|sign up|register)#is",$r[1],$register);
+preg_match("#(signup|register)#is",$r[1],$register);
 preg_match("#Faucet Locked!#is",$r[1],$locked);
 preg_match('#data-sitekey="(.*?)"#is',$r[1],$recaptchav2);
 preg_match('#data-sitekey="(.*?)"#is',$r[1],$hcaptcha);
