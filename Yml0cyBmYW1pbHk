@@ -42,7 +42,7 @@ c();$methode=methode_captcha();
 ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
 $request_captcha=tx("number").line();
 if(!$methode[$request_captcha]){goto methode;}
-include(str_replace("request_captcha(",$methode[$request_captcha]."(",$include));
+eval(str_replace("request_captcha(",$methode[$request_captcha]."(",$include));
 
 c().asci(sc).ket("username",$r["username"],"balance",$r["balance"]).line();
 
