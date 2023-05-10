@@ -16,7 +16,7 @@ eval(str_replace("request_captcha(",$methode[$request_captcha]."(",file_get_cont
 
 
 
-go:c();$web=[1=>"btccanyon.com",2=>"nevcoins.club",3=>"claimlite.club",4=>"faucetofbob.xyz",5=>"claimfreecoins.cc",6=>"ltchunt.com",7=>"rushbitcoin.com",8=>"bits-claimer.com"];
+go:c();$web=[1=>"btccanyon.com",2=>"nevcoins.club",3=>"claimlite.club",4=>"faucetofbob.xyz",5=>"claimfreecoins.cc",6=>"ltchunt.com",7=>"rushbitcoin.com",8=>"bits-claimer.com","grab.tc","click.namaidani.com"];
 for($i=1;$i<10;$i++){if($web[$i]){ket($i,$web[$i]);}}
 $p=preg_replace("/[^0-9]/","",trim(tx("number")));
 $host=$web[$p];if(!$host){goto go;}
@@ -30,8 +30,9 @@ $web[4]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","run_fa
 $web[5]=>["faucet"=>"faucet.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
 $web[6]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
 $web[7]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[8]=>["faucet"=>"","ptc"=>"?page=ptc","shortlinks"=>"?page=shortlinks","type"=>"recaptchav2","run_faucet"=>"on"]
-
+$web[8]=>["faucet"=>"","ptc"=>"?page=ptc","shortlinks"=>"?page=shortlinks","type"=>"recaptchav2","run_faucet"=>"on"],
+$web[9]=>["faucet"=>"","ptc"=>"?page=ptc","shortlinks"=>"?page=shortlinks","type"=>"recaptchav2","run_faucet"=>"on"],
+$web[10]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
 ];
 
 
