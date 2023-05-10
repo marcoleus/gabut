@@ -17,7 +17,7 @@ eval(str_replace("request_captcha(",$methode[$request_captcha]."(",file_get_cont
 
 
 go:c();$web=[1=>"btccanyon.com",2=>"nevcoins.club",3=>"claimlite.club",4=>"faucetofbob.xyz",5=>"claimfreecoins.cc",6=>"ltchunt.com",7=>"rushbitcoin.com",8=>"bits-claimer.com",9=>"grab.tc",10=>"click.namaidani.com"];
-for($i=1;$i<10;$i++){if($web[$i]){ket($i,$web[$i]);}}
+for($i=1;$i<50;$i++){if($web[$i]){ket($i,$web[$i]);}}
 $p=preg_replace("/[^0-9]/","",trim(tx("number")));
 $host=$web[$p];if(!$host){goto go;}
 
