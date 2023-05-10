@@ -16,7 +16,7 @@ eval(str_replace("request_captcha(",$methode[$request_captcha]."(",file_get_cont
 
 
 
-go:c();$web=[1=>"btccanyon.com",2=>"nevcoins.club",3=>"claimlite.club",4=>"faucetofbob.xyz",5=>"claimfreecoins.cc",6=>"ltchunt.com",7=>"rushbitcoin.com",8=>"bits-claimer.com","grab.tc","click.namaidani.com"];
+go:c();$web=[1=>"btccanyon.com",2=>"nevcoins.club",3=>"claimlite.club",4=>"faucetofbob.xyz",5=>"claimfreecoins.cc",6=>"ltchunt.com",7=>"rushbitcoin.com",8=>"bits-claimer.com",9=>"grab.tc",10=>"click.namaidani.com"];
 for($i=1;$i<10;$i++){if($web[$i]){ket($i,$web[$i]);}}
 $p=preg_replace("/[^0-9]/","",trim(tx("number")));
 $host=$web[$p];if(!$host){goto go;}
@@ -105,7 +105,9 @@ $r1=base_run(host."system/ajax.php",$data)["json"];
 
 if($r1->reward==true){
 $reward=explode(", ",strip_tags($r1->message));
-print h.$reward[0];r();print h.$reward[1].n;line().ket("balance",base_run(host.$link[$host]["faucet"])["balance"]).line();tmr(1,$r["countdown"]*60+30);}else{
+$r3=base_run(host.$link[$host]["faucet"]);
+if($r3["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r3["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}
+print h.$reward[0];r();print h.$reward[1].n;line().ket("balance",$r3["balance"]).line();tmr(1,$r["countdown"]*60+30);}else{
 if($r1->status==400){print m.strip_tags($r1->message.n);sleep(2);goto faucet;}
 print m.strip_tags($r1->message);r();goto refresh;}}
 
