@@ -101,6 +101,7 @@ if($r["timer"]){tmr(1,$r["timer"]*60+30);goto faucet;}
 if($r["seconds"]){tmr(1,$r["seconds"]+20);goto faucet;}
 if(!$r[$link[$host]["type"]]){goto faucet;}
 refresh:eval(str_replace("request_captcha(",$methode[$request_captcha]."(",'$cap=request_captcha($link[$host]["type"],$r[$link[$host]["type"]],host.$link[$host]["faucet"]);'));
+if(!$cap){goto refresh;}
 $data=http_build_query(["a"=>"getFaucet","token"=>$r["token"],"captcha"=>true,"challenge"=>false,"response"=>$cap]);
 $r1=base_run(host."system/ajax.php",$data)["json"];
 
