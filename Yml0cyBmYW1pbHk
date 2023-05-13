@@ -96,7 +96,9 @@ $r=base_run(host.$link[$host]["faucet"]);
 
 if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}elseif($r["locked"]){print m.$r["locked"].n;line();
 print p."Catatan!".n."jika proses bypass tidak ada di script silahkan".n."manual shortlinks terlebih dahulu di browser!".n;line().tx("enter to continue");
-L(5);goto ptc;}elseif($r["timer"]){tmr(1,$r["timer"]*60+30);goto faucet;}elseif($r["seconds"]){tmr(1,$r["seconds"]+20);goto faucet;}
+L(5);goto ptc;}
+if($r["timer"]){tmr(1,$r["timer"]*60+30);goto faucet;}
+if($r["seconds"]){tmr(1,$r["seconds"]+20);goto faucet;}
 if(!$r[$link[$host]["type"]]){goto faucet;}
 refresh:eval(str_replace("request_captcha(",$methode[$request_captcha]."(",'$cap=request_captcha($link[$host]["type"],$r[$link[$host]["type"]],host.$link[$host]["faucet"]);'));
 $data=http_build_query(["a"=>"getFaucet","token"=>$r["token"],"captcha"=>true,"challenge"=>false,"response"=>$cap]);
