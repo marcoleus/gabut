@@ -23,41 +23,41 @@ $host=$web[$p];if(!$host){goto go;}
 
 
 
-$link=[$web[1]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[2]=>["faucet"=>"claim.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[3]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[4]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","run_faucet"=>"off"],
-$web[5]=>["faucet"=>"faucet.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[6]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[7]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[8]=>["faucet"=>"","ptc"=>"?page=ptc","shortlinks"=>"?page=shortlinks","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[9]=>["faucet"=>"","ptc"=>"?page=ptc","shortlinks"=>"?page=shortlinks","type"=>"recaptchav2","run_faucet"=>"on"],
-$web[10]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"],
+$link=[$web[1]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on","mode"=>"icon"],
+$web[2]=>["faucet"=>"claim.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on","mode"=>"icon"],
+$web[3]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on","mode"=>"icon"],
+$web[4]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","run_faucet"=>"off","mode"=>"icon"],
+$web[5]=>["faucet"=>"faucet.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on","mode"=>"icon"],
+$web[6]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on","mode"=>"icon"],
+$web[7]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on","mode"=>"icon"],
+$web[8]=>["faucet"=>"","ptc"=>"?page=ptc","shortlinks"=>"?page=shortlinks","type"=>"recaptchav2","run_faucet"=>"on","mode"=>"icon"],
+$web[9]=>["faucet"=>"","ptc"=>"?page=ptc","shortlinks"=>"?page=shortlinks","type"=>"recaptchav2","run_faucet"=>"on","mode"=>"icon"],
+$web[10]=>["faucet"=>"","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on","mode"=>"icon"],
 ];
 
 
-eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",mode="bits";')));
-$asu="cookie_".explode("/",host)[2];
+
+eval(str_replace('sl_mode',$link[$host]["mode"],str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",cookie_only="cookie_example",cookie_short="short_name_host.txt",mode="sl_mode";'))));$asu=cookie_only;
 
 DATA:
 $u_a=save("useragent");
-$u_c=save($asu);
+$u_c=save(cookie_only);
 
 $r=base_run(host.$link[$host]["faucet"]);
-if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}
 
 
 c().asci(sc).ket("username",$r["username"],"balance",$r["balance"]).line();
 
 xxnx:
-ket(1,"ptc -> shortlinks -> faucet",2,"faucet -> ptc -> shortlinks").line();
+ket(1,"starts all",2,"faucet").line();
 $xxnx=tx("number").line();
 if($xxnx==1){goto ptc;}elseif($xxnx==2){goto faucet;}else{goto xxnx;}
 
 //goto shortlinks;
 
 ptc:$r=base_run(host.$link[$host]["ptc"]);
-if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}elseif(!$r["sid"]){lah(2);L(5);goto shortlinks;}
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}elseif(!$r["sid"]){lah(2);L(5);goto shortlinks;}
 $r1=base_run(host.str_replace("' + a + '",$r["sid"],$r["surf"]));L($r1["timer"]);
 $data=http_build_query(["cID"=>0,"rT"=>1,"tM"=>"light"]);
 $r2=base_run(host."system/libs/captcha/request.php",$data)["json"];
@@ -66,7 +66,7 @@ $data1=http_build_query(["cID"=>0,"pC"=>$r2[$x],"rT"=>2]);
 base_run(host."system/libs/captcha/request.php",$data1);
 $data2=http_build_query(["a"=>"proccessPTC","data"=>$r["sid"],"token"=>$r1["token"],"captcha-idhf"=>0,"captcha-hf"=>$r2[$x]]);
 $r3=base_run(host."system/ajax.php",$data2)["json"];
-if($r3->status==200){print h.strip_tags($r3->message).n;line();goto ptc;}elseif($r3->status==400){print m.strip_tags($r3->message.n);base_run(host.$link[$host]["faucet"]);sleep(2);goto ptc;}}
+if($r3->status==200){print h.strip_tags($r3->message).n;line();goto ptc;}elseif($r3->status==400 or $r3->status==500){print m.strip_tags($r3->message.n);base_run(host.$link[$host]["faucet"]);sleep(2);goto ptc;}}
 
 
 
@@ -74,7 +74,7 @@ if($r3->status==200){print h.strip_tags($r3->message).n;line();goto ptc;}elseif(
 
 shortlinks:while(true){
 $r=base_run(host.$link[$host]["shortlinks"]);
-if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}
 include("config.php");
 $bypas=visit_short($r);
 if($bypas=="refresh"){goto shortlinks;}elseif(!$bypas){lah();L(5);
@@ -94,24 +94,24 @@ for($s=1;$s<61;$s++){if($target==date('H',strtotime('+1 hour')).str_pad($s,2,'0'
 $r=base_run(host.$link[$host]["faucet"]);
 
 
-if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}elseif($r["locked"]){print m.$r["locked"].n;line();
-print p."Catatan!".n."jika proses bypass tidak ada di script silahkan".n."manual shortlinks terlebih dahulu di browser!".n;line().tx("enter to continue");
-L(5);goto ptc;}
-if($r["timer"]){tmr(1,$r["timer"]*60+30);goto faucet;}
-if($r["seconds"]){tmr(1,$r["seconds"]+20);goto faucet;}
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}elseif($r["locked"]){print m.$r["locked"].n;line();
+print p."Catatan!".n."jika proses bypass tidak ada di script silahkan".n."manual shortlinks terlebih dahulu di browser!".n;line().tx("enter to continue");L(5);goto ptc;}
+if($r["timer"]){date_default_timezone_set("UTC");
+tmr(1,bcdiv(preg_replace("/[^0-9]/","",$r["countdown"][1]),1000)-time());goto faucet;}
 if(!$r[$link[$host]["type"]]){goto faucet;}
 refresh:eval(str_replace("request_captcha(",$methode[$request_captcha]."(",'$cap=request_captcha($link[$host]["type"],$r[$link[$host]["type"]],host.$link[$host]["faucet"]);'));
 if(!$cap){goto refresh;}
 $data=http_build_query(["a"=>"getFaucet","token"=>$r["token"],"captcha"=>true,"challenge"=>false,"response"=>$cap]);
 $r1=base_run(host."system/ajax.php",$data)["json"];
-
-
 if($r1->reward==true){
 $reward=explode(", ",strip_tags($r1->message));
 $r3=base_run(host.$link[$host]["faucet"]);
-if($r3["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r3["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}
-print h.$reward[0];r();print h.$reward[1].n;line().ket("balance",$r3["balance"]).line();tmr(1,$r["countdown"]*60+30);}else{
-if($r1->status==400){print m.strip_tags($r1->message.n);sleep(2);goto faucet;}
+if($r3["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r3["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}
+print h.$reward[0];r();print h.$reward[1].n;line().ket("balance",$r3["balance"]).line();
+if($r3["timer"]){date_default_timezone_set("UTC");
+tmr(1,bcdiv(preg_replace("/[^0-9]/","",$r3["countdown"][1]),1000)-time());goto faucet;}
+}else{
+if($r1->status==400 or $r1->status==500){print m.strip_tags($r1->message.n);sleep(2);goto faucet;}
 print m.strip_tags($r1->message);r();goto refresh;}}
 
 
@@ -127,18 +127,14 @@ preg_match('#data-sitekey="(.*?)"#is',$r[1],$hcaptcha);
 preg_match('#(text-success)(>|">)(.*?)<#is',$r[1],$username);
 preg_match('#(text-primary|id="account_balance)(>|">)<b>(.*?)(<)#is',$r[1],$balance);
 preg_match('#(text-success|text-warning)(>|">)<b>(.*?)<#is',$r[1],$value);
-
-
-
 preg_match("#([a-z0-9]{64})#is",$r[1],$token);
-preg_match('#(var secs = |id="claimTime">)([0-9]{2}|[0-9]{1})(;| minutes)#is',$r[1],$tmr);
-preg_match('#(id="claimTime">)([0-9]{2}|[0-9]{1}) seconds#is',$r[1],$seconds);
-preg_match('#every ([0-9]{2}|[0-9]{1})#is',$r[1],$countdown);
+preg_match('#(var secs = |id="claimTime">)([0-9]{2}|[0-9]{1})(;| h| m| s)#is',$r[1],$tmr);
+preg_match_all('#claimTime(.*?),#is',$r[1],$countdown);
 preg_match("#opensite(.*?)',#is",$r[1],$sid);
 $surf=ex("open(base + '/","',",1,$r[1]);
-preg_match_all('#align-middle">(.*?)</td><tdclass="align-middletext-center"><bclass="badgebadge-dark">(.*?)</b></td><tdclass="align-middletext-center"><bclass="badgebadge-dark">(.*?)</b></td><tdclass="(text-right|align-middletext-center)">(.*?)class=#is',str_replace([n," "],"",$r[1]),$sl);
+preg_match_all('#align-middle">(.*?)</td><tdclass="align-middletext-center"><bclass="badgebadge-dark">(.*?)</b></td><tdclass="align-middletext-center"><bclass="badgebadge-dark">(.*?)</b></td><tdclass="(text-right|align-middletext-center)">(.*?)(role|"class=)#is',trimed($r[1]),$sl);
 preg_match('#(successmt-0"|alert-success mt-0" )role="alert">(.*?)<#is',$r[1],$n);
 
 //print_r($sl);
 //die(print_r($sl));
-return ["res"=>$r[1],"cloudflare"=>$cloudflare[0],"register"=>$register[0],"locked"=>$locked[0],"recaptchav2"=>$recaptchav2[1],"hcaptcha"=>$hcaptcha[1],"username"=>$username[3],"balance"=>strip_tags($balance[3])." / ".$value[3],"surf"=>$surf,"sid"=>preg_replace("/[^0-9]/","",$sid[1]),"token"=>$token[1],"timer"=>$tmr[2],"seconds"=>$seconds[1],"countdown"=>$countdown[1],"visit"=>$sl[5],"left"=>$sl[3],"name"=>$sl[1],"notif"=>$n[2],"json"=>json_decode($r[1])];}
+return ["res"=>$r[1],"cloudflare"=>$cloudflare[0],"register"=>$register[0],"locked"=>$locked[0],"recaptchav2"=>$recaptchav2[1],"hcaptcha"=>$hcaptcha[1],"username"=>$username[3],"balance"=>strip_tags($balance[3])." / ".$value[3],"surf"=>$surf,"sid"=>preg_replace("/[^0-9]/","",$sid[1]),"token"=>$token[1],"timer"=>$tmr[2],"countdown"=>$countdown[1],"visit"=>$sl[5],"left"=>$sl[3],"name"=>$sl[1],"notif"=>$n[2],"json"=>json_decode($r[1])];}
