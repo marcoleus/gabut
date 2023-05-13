@@ -21,17 +21,15 @@ for($i=1;$i<10;$i++){if($web[$i]){ket($i,$web[$i]);}}
 $p=preg_replace("/[^0-9]/","",trim(tx("number")));
 $host=$web[$p];if(!$host){goto go;}
 
-eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",mode="3in1";')));
-$asu="cookie_".explode("/",host)[2];
-
+eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",cookie_only="cookie_example",cookie_short="short_name_host.txt",mode="af";')));$asu=cookie_only;
 
 
 DATA:
 $u_a=save("useragent");
-$u_c=save($asu);
+$u_c=save(cookie_only);
 
 c();$r=base_run(host."dashboard/claim/auto");
-if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}
 ket("+","beta test script for ".explode("/",host)[2]);
 ket("✓","Target Autofaucet Credits (1% bonus)");
 frequency:ket("•","Choose the frequency").line();
@@ -48,12 +46,12 @@ if($bs==0 or !$boost[0]){goto boost;}
 
 
 $r=base_run(host."dashboard/shortlinks");
-if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}c().asci(sc).ket("username",$r["username"],"balance",$r["balance"]).line();
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}c().asci(sc).ket("username",$r["username"],"balance",$r["balance"]).line();
 
 shortlinks:
 while(true){include("config.php");
 $r=base_run(host."dashboard/shortlinks");
-if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}
 if($r["status"]==1){base_run(host."verify/hshort",http_build_query(["status"=>1]));goto shortlinks;}
 $bypas=visit_short($r);
 if($bypas=="refresh"){goto shortlinks;}
@@ -67,7 +65,7 @@ $r1=base_run(host."verify/cl-au",http_build_query(["currency"=>"USDT","payout"=>
 $r2=base_run(host."verify/cli-au",http_build_query(["currencies[]"=>"USDT","payout"=>1,"frequency"=>$frequency[0],"boost"=>$boost[0]]));
 if($r2["res"]){print k.$r2["res"];r();}
 while(true){$r3=base_run(host."dashboard/claim/auto/start");
-if($r3["cloudflare"]){print m.sc." cloudflare!".n;unlink($asu);goto DATA;}elseif($r3["register"]){print m.sc." cookie expired!".n;unlink($asu);goto DATA;}elseif($r3["notif"]){
+if($r3["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r3["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}elseif($r3["notif"]){
 print h.$r3["notif"].n;line();
 ket("balance",$r3["balance"]).line();}elseif(target()){goto shortlinks;}elseif($r3["time"]){tmr(1,$r3["time"]);
 }else{print m."FCT TOKEN not found".n;goto shortlinks;}
