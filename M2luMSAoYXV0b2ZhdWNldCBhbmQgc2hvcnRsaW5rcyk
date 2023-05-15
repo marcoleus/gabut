@@ -3,7 +3,7 @@ error_reporting(0);
 eval(str_replace("<?php","",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php")));
 methode:
 c();
-$methode=methode_captcha();
+$methode = methode_captcha();
 ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
 $request_captcha=tx("number").line();
 if(!$methode[$request_captcha]){
@@ -12,27 +12,27 @@ if(!$methode[$request_captcha]){
 eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
 go:
 c();
-$web=[
-    1=>"autofaucet.org",
-    2=>"autoclaim.in",
-    3=>"autobitco.in"
+$web = [
+    1 => "autofaucet.org",
+    2 => "autoclaim.in",
+    3 => "autobitco.in"
 ];
 for($i=1;$i<10;$i++){
     if($web[$i]){
         ket($i,$web[$i]);
     }
 }
-$p=preg_replace("/[^0-9]/","",trim(tx("number")));
+$p = preg_replace("/[^0-9]/","",trim(tx("number")));
 $host=$web[$p];
 if(!$host){
     goto go;
 }
 eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",cookie_only="cookie_example",cookie_short="short_name_host.txt",mode="af";')));
-$asu=cookie_only;DATA:
-$u_a=save("useragent");
-$u_c=save(cookie_only);
+$asu = cookie_only;DATA:
+$u_a = save("useragent");
+$u_c = save(cookie_only);
 c();
-$r=base_run(host."dashboard/claim/auto");
+$r = base_run(host."dashboard/claim/auto");
 if($r["cloudflare"]){
     print m.sc." cloudflare!".n;
     unlink(cookie_only);
@@ -46,17 +46,17 @@ ket("+","beta test script for ".explode("/",host)[2]);
 ket("✓","Target Autofaucet Credits (1% bonus)");
 frequency:ket("•","Choose the frequency").line();
 for($s=2;$s<11;$s++){
-    if($s==2){
+    if($s == 2){
         ket($s-1,$s." minutes");
-    } elseif($s==5){
+    } elseif($s == 5){
         ket($s-3,$s." minutes (1% bonus)");
-    } elseif($s==10){
+    } elseif($s == 10){
         ket($s-7,$s." minutes (2% bonus)");
         line();}
     }
     $fq=tx("number").line();
     preg_match("([0-3]{1})",$fq,$frequency);
-    if($fq==0 or !$frequency[0]){
+    if($fq == 0 or !$frequency[0]){
         goto frequency;
     }
     boost:ket("•","Payment Boost").line();
@@ -66,10 +66,10 @@ for($s=2;$s<11;$s++){
     line();
     $bs=tx("number").line();
     preg_match("([0-4]{1})",$bs,$boost);
-    if($bs==0 or !$boost[0]){
+    if($bs == 0 or !$boost[0]){
         goto boost;
     }
-    $r=base_run(host."dashboard/shortlinks");
+    $r = base_run(host."dashboard/shortlinks");
     if($r["cloudflare"]){
         print m.sc." cloudflare!".n;
         unlink(cookie_only);
@@ -83,7 +83,7 @@ for($s=2;$s<11;$s++){
     shortlinks:
     while(true){
         include("config.php");
-        $r=base_run(host."dashboard/shortlinks");
+        $r = base_run(host."dashboard/shortlinks");
         if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);
             goto DATA;
         } elseif($r["register"]){
@@ -91,32 +91,32 @@ for($s=2;$s<11;$s++){
             unlink(cookie_only);
             goto DATA;
         }
-        if($r["status"]==1){
-            base_run(host."verify/hshort",http_build_query(["status"=>1]));
+        if($r["status"] == 1){
+            base_run(host."verify/hshort",http_build_query(["status" => 1]));
             goto shortlinks;
         }
         $bypas=visit_short($r);
-        if($bypas=="refresh"){
+        if($bypas == "refresh"){
             goto shortlinks;
         } elseif(!$bypas){
             lah();
             goto auto;
         }
-        $r3=base_run($bypas);
+        $r3 = base_run($bypas);
         if($r3["notif"]){
             print h.$r3["notif"].n;
             line().ket("balance",$r3["balance"]).line();
         }
     }
     auto:
-    $r1=base_run(host."verify/cl-au",http_build_query(["currency"=>"USDT","payout"=>1,"frequency"=>$frequency[0],"boost"=>$boost[0]]));
-    $r2=base_run(host."verify/cli-au",http_build_query(["currencies[]"=>"USDT","payout"=>1,"frequency"=>$frequency[0],"boost"=>$boost[0]]));
+    $r1 = base_run(host."verify/cl-au",http_build_query(["currency" => "USDT","payout" => 1,"frequency" => $frequency[0],"boost" => $boost[0]]));
+    $r2 = base_run(host."verify/cli-au",http_build_query(["currencies[]" => "USDT","payout" => 1,"frequency" => $frequency[0],"boost" => $boost[0]]));
     if($r2["res"]){
         print k.$r2["res"];
         r();
     }
     while(true){
-        $r3=base_run(host."dashboard/claim/auto/start");
+        $r3 = base_run(host."dashboard/claim/auto/start");
         if($r3["cloudflare"]){
             print m.sc." cloudflare!".n;
             unlink(cookie_only);
@@ -140,7 +140,7 @@ for($s=2;$s<11;$s++){
 }
     
 function base_run($url,$data=0){
-    $r=curl($url,hmc(),$data,true,false);
+    $r = curl($url,hmc(),$data,true,false);
     //die(file_put_contents("response_body.html",$r[1]));
     //$r=file_get_contents("response_body.html");
     preg_match("#Just a moment#is",$r[1],$cloudflare);
@@ -157,33 +157,33 @@ function base_run($url,$data=0){
     //print_r($amn);
     //die(print_r());
     return [
-        "res"=>$r[1],
-        "cloudflare"=>$cloudflare[0],
-        "register"=>$register[0],
-        "username"=>$username[1],
-        "balance"=>strip_tags($balance[1]),
-        "status"=>$status[1],
-        "visit"=>$visit[1],
-        "left"=>$left[1],
-        "name"=>$name[1],
-        "token"=>$t_cs,
-        "time"=>$tmr[1],
-        "notif"=>str_replace(". ",n,strip_tags($n_r[2])),
-        "url"=>$r[0][0]["location"]
+        "res" => $r[1],
+        "cloudflare" => $cloudflare[0],
+        "register" => $register[0],
+        "username" => $username[1],
+        "balance" => strip_tags($balance[1]),
+        "status" => $status[1],
+        "visit" => $visit[1],
+        "left" => $left[1],
+        "name" => $name[1],
+        "token" => $t_cs,
+        "time" => $tmr[1],
+        "notif" => str_replace(". ",n,strip_tags($n_r[2])),
+        "url" => $r[0][0]["location"]
     ];
 }
 
 function target(){
     date_default_timezone_set('Asia/Jakarta');
     for($x=10;$x<25;$x++){
-        if(sc=="autofaucet"){
+        if(sc == "autofaucet"){
             $t="08";
-        } elseif(sc=="autoclaim"){
+        } elseif(sc == "autoclaim"){
             $t="15";
-        } elseif(sc=="autobitco"){
+        } elseif(sc == "autobitco"){
             $t="01";
         }
-        if(date("Hi")==$t.$x){
+        if(date("Hi") == $t.$x){
             return "reset";
         }
     }
