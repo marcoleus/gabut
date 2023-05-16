@@ -312,7 +312,8 @@ function base_run($url,$data=0) {
     preg_match('#(text-success)(>|">)(.*?)<#is',$r[1],$username);
     preg_match('#(text-primary|id="account_balance)(>|">)<b>(.*?)(<)#is',$r[1],$balance);
     preg_match('#(text-success|text-warning)(>|">)<b>(.*?)<#is',$r[1],$value);
-    preg_match("#([a-z0-9]{64})#is",$r[1],$token);preg_match('#(var secs = |id="claimTime">)([0-9]{2}|[0-9]{1})(;| h| m| s)#is',$r[1],$tmr);
+    preg_match("#([a-z0-9]{64})#is",$r[1],$token);
+    preg_match('#(var secs = |id="claimTime">)([0-9]{2}|[0-9]{1})(;| h| m| s)#is',$r[1],$tmr);
     preg_match_all('#claimTime(.*?),#is',$r[1],$countdown);
     preg_match("#opensite(.*?)',#is",$r[1],$sid);
     $surf=ex("open(base + '/","',",1,$r[1]);
