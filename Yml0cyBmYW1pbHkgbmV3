@@ -2,7 +2,7 @@
 
 error_reporting(0);
 if($eval == false) {
-    eval(file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
+    eval(get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
 }
 methode:
 c();
@@ -12,7 +12,7 @@ $request_captcha = tx("number").line();
 if(!$methode[$request_captcha]) {
     goto methode;
 }
-eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
+eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
 go:
 c();$web=[1=>"sports4dbtc.com",2=>"likeafaucet.com"];
 for($i=1;$i<50;$i++){if($web[$i]){ket($i,$web[$i]);}}
@@ -117,7 +117,7 @@ function base_run($url,$data=0){
 $r=curl($url,hmc(1),$data,true,false);
 
 //die(file_put_contents("response_body.html",trimed($r[1])));
-//$r=file_get_contents("response_body.html");
+//$r=get_e("response_body.html");
 preg_match("#Just a moment#is",$r[1],$cloudflare);
 preg_match("#(Keep me logged in for 1 week)#is",$r[1],$register);
 preg_match("#Bonus Roll Locked!|Faucet Locked!#is",$r[1],$locked);
