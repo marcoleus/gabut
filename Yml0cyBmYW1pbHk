@@ -2,7 +2,7 @@
 
 error_reporting(0);
 if($eval == false) {
-    eval(file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
+    eval(get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
 }
 methode:
 c();
@@ -12,7 +12,7 @@ $request_captcha = tx("number").line();
 if(!$methode[$request_captcha]) {
     goto methode;
 }
-eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
+eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
 go:
 c();
 $web = [
@@ -147,7 +147,7 @@ if($r["cloudflare"]) {
     unlink(cookie_only);
     goto DATA;
 } elseif(!$r["sid"]) {
-    lah(2);
+    lah(1,"ptc");
     L(5);
     goto shortlinks;
 }
@@ -202,7 +202,7 @@ while(true) {
     if($bypas == "refresh") {
         goto shortlinks;
     } elseif(!$bypas) {
-        lah();
+        lah(1,"shortlinks");
         L(5);
         date_default_timezone_set("Asia/Jakarta");
         $target=date('Hi',strtotime('+0 hour'));
@@ -221,7 +221,7 @@ faucet:
 while(true) {
     date_default_timezone_set("Asia/Jakarta");
     if($link[$host]["run_faucet"] == "off") {
-        lah(3);tmr(2,24*60*60);
+        lah(2,"faucet");tmr(2,24*60*60);
         goto ptc;
     }
     for($s=1;$s<61;$s++) {
@@ -303,7 +303,7 @@ while(true) {
 function base_run($url,$data=0) {
     $r = curl($url,hmc(1),$data,true,false);
     //die(file_put_contents("response_body.html",$r));
-    //$r=file_get_contents("response_body.html");
+    //$r=get_e("response_body.html");
     preg_match("#Just a moment#is",$r[1],$cloudflare);
     preg_match("#(Keep me logged in for 1 week)#is",$r[1],$register);
     preg_match("#Faucet Locked!#is",$r[1],$locked);
