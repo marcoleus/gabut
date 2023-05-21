@@ -50,7 +50,7 @@ if($xxnx==1){goto ptc;}elseif($xxnx==2){goto faucet;}else{goto xxnx;}
 
 
 ptc:$r=base_run(host.$link[$host]["ptc"]);
-if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}elseif(!$r["sid"]){lah(2);L(5);goto shortlinks;}
+if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}elseif(!$r["sid"]){lah(1,"ptc");L(5);goto shortlinks;}
 $r1=base_run(host.str_replace("' + a + '",$r["sid"],$r["surf"]));L($r1["timer"]);
 $data=http_build_query(["cID"=>0,"rT"=>1,"tM"=>"light"]);
 $r2=base_run(host."system/libs/captcha/request.php",$data)["json"];
@@ -70,7 +70,7 @@ $r=base_run(host.$link[$host]["shortlinks"]);
 if($r["cloudflare"]){print m.sc." cloudflare!".n;unlink(cookie_only);goto DATA;}elseif($r["register"]){print m.sc." cookie expired!".n;unlink(cookie_only);goto DATA;}
 include("config.php");
 $bypas=visit_short($r);
-if($bypas=="refresh"){goto shortlinks;}elseif(!$bypas){lah();L(5);
+if($bypas=="refresh"){goto shortlinks;}elseif(!$bypas){lah(1,"shortlinks");L(5);
 date_default_timezone_set("Asia/Jakarta");
 $target=date('Hi',strtotime('+0 hour'));goto faucet;}
 $r1=base_run($bypas);
@@ -82,7 +82,7 @@ line().ket("balance",$r1["balance"]).line();}}
 
 faucet:while(true){
 date_default_timezone_set("Asia/Jakarta");
-if($link[$host]["run_faucet"]=="off"){lah(3);tmr(2,24*60*60);goto ptc;}
+if($link[$host]["run_faucet"]=="off"){lah(1,"faucet");tmr(2,24*60*60);goto ptc;}
 for($s=1;$s<61;$s++){if($target==date('H',strtotime('+1 hour')).str_pad($s,2,'0',STR_PAD_LEFT)){goto ptc;}}
 $r=base_run(host.$link[$host]["faucet"]);
 
