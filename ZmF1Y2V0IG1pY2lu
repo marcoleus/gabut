@@ -21,6 +21,7 @@ $web = [
     2 => "trxking.xyz",
     3 => "coinpot.in",
     4 => "coinad.pro",
+    5 => "freebinance.top",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -46,6 +47,10 @@ $link = [
         "auto" => true
     ],
     $web[4] => [
+        "type" => "recaptchav2",
+        "auto" => true
+    ],
+    $web[5] => [
         "type" => "recaptchav2",
         "auto" => true
     ]
@@ -332,11 +337,11 @@ function base_run($url,$data=0) {
     preg_match("#firewall#is",$r[1],$firewall);
     preg_match('#data-sitekey="(.*?)"#is',$r[1],$recaptchav2);
     preg_match('#data-sitekey="(.*?)"#is',$r[1],$hcaptcha);
-    preg_match('#(siteUserFullName)(.*?)(<)#is',$r[1],$username);
-    preg_match('#(</div>'.n.'<h2 class="title">|><i class="fas fa-coins"></i>|card-title text-white">)(.*?)(<)#is',$r[1],$balance);
+    preg_match('#(siteUserFullName|text-truncate">)(.*?)(<)#is',$r[1],$username);
+    preg_match('#(text-warning">|</div>'.n.'<h2 class="title">|><i class="fas fa-coins"></i>|card-title text-white">)(.*?)(<)#is',$r[1],$balance);
     preg_match_all('#hidden" name="(.*?)" value="(.*?)"#',$r[1],$t_cs);
     preg_match('#(timer|wait*)( = *)(\d+)#is',$r[1],$tmr);
-    preg_match_all('#(margin-bottom: 0px;">|class="link-name">|class="card-title">)(.*?)(<)#is',$r[1],$x);
+    preg_match_all('#(card-title mt-0">|margin-bottom: 0px;">|class="link-name">|class="card-title">)(.*?)(<)#is',$r[1],$x);
     preg_match_all('#(https?:\/\/[a-zA-Z0-9\/-\/.]*\/go\/?[a-zA-Z0-9\/-\/.]*)(.*?)#is',$r[1],$y);
     preg_match_all('#(>| )(\d+\/+\d+)#is', str_replace(str_split('({['),'',$r[1]),$z);
     preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$r[1],$u_r);
@@ -346,7 +351,7 @@ function base_run($url,$data=0) {
           $n[2] = $nn[2][0].$nn[2][1];
     }
     preg_match_all("#(https?:\/\/[a-z\/.]*)(verify|view|achievements\/claim*)(\/?[a-z0-9\/]*)(.*?)#is",$r[1],$redirect);
-    preg_match('#(badge-warning">|ms-2 orange">|badge-primary">|purple ms-auto">)(\d+)#is',$r[1],$p);
+    preg_match('#(50a5f1;">|badge-warning">|ms-2 orange">|badge-primary">|purple ms-auto">)(\d+)#is',$r[1],$p);
     //print_r($sl);
     //die(print_r($xx)));
     return [
