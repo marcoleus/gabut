@@ -20,6 +20,7 @@ $web = [
     1 => "claimsatoshi.xyz",
     2 => "trxking.xyz",
     3 => "coinpot.in",
+    4 => "coinad.pro",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -42,6 +43,10 @@ $link = [
         "type" => "recaptchav2",
         "ptc" => true,
         "faucet" => true,
+        "auto" => true
+    ],
+    $web[4] => [
+        "type" => "recaptchav2",
         "auto" => true
     ]
 ];
@@ -334,7 +339,6 @@ function base_run($url,$data=0) {
     preg_match_all('#(margin-bottom: 0px;">|class="link-name">|class="card-title">)(.*?)(<)#is',$r[1],$x);
     preg_match_all('#(https?:\/\/[a-zA-Z0-9\/-\/.]*\/go\/?[a-zA-Z0-9\/-\/.]*)(.*?)#is',$r[1],$y);
     preg_match_all('#(>| )(\d+\/+\d+)#is', str_replace(str_split('({['),'',$r[1]),$z);
-    
     preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$r[1],$u_r);
     preg_match('#(Swal.fire)(.*?)(<)#is',$r[1],$n);
     preg_match_all('#(title|text):(.*?)(,)#is',$r[1],$nn);
@@ -342,7 +346,7 @@ function base_run($url,$data=0) {
           $n[2] = $nn[2][0].$nn[2][1];
     }
     preg_match_all("#(https?:\/\/[a-z\/.]*)(verify|view|achievements\/claim*)(\/?[a-z0-9\/]*)(.*?)#is",$r[1],$redirect);
-    preg_match('#(ms-2 orange">|badge-primary">|purple ms-auto">)(\d+)#is',$r[1],$p);
+    preg_match('#(badge-warning">|ms-2 orange">|badge-primary">|purple ms-auto">)(\d+)#is',$r[1],$p);
     //print_r($sl);
     //die(print_r($xx)));
     return [
