@@ -52,7 +52,7 @@ $link = [
     ],
     $web[5] => [
         "type" => "recaptchav2",
-        "auto" => true
+        "faucet" => true
     ]
 ];
 
