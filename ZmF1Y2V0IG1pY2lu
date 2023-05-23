@@ -114,7 +114,7 @@ while(true){
         print m."Firewall!";
         r();
         goto firewall;
-    } elseif($r["left_ptc"]==0){
+    } elseif(!$r["redirect"][0] or $r["left_ptc"]==0){
         lah(1,$redirect);
         L(5);
         goto faucet;
