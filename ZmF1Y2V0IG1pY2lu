@@ -22,7 +22,7 @@ $web = [
     3 => "coinpot.in",
     4 => "coinad.pro",
     5 => "freebinance.top",
-    5 => "freesolana.top",
+    6 => "freesolana.top",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
