@@ -360,7 +360,7 @@ function base_run($url,$data=0) {
     if(!$n[2]){
           $n[2] = $nn[2][0].$nn[2][1];
     }
-    preg_match_all("#(https?:\/\/[a-z\/.]*)(verify|view|achievements\/claim*)(\/?[a-z0-9\/]*)(.*?)#is",$r[1],$redirect);
+    preg_match_all("#(https?:\/\/[a-z\/.]*)(verify|ptc\/view|achievements\/claim*)(\/?[a-z0-9\/]*)(.*?)#is",$r[1],$redirect);
     preg_match('#(50a5f1;">|badge-warning">|ms-2 orange">|badge-primary">|purple ms-auto">)(\d+)#is',$r[1],$p);
     //print_r($sl);
     //die(print_r($xx)));
