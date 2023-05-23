@@ -24,6 +24,7 @@ $web = [
     5 => "freebinance.top",
     6 => "freesolana.top",
     7 => "freelitecoin.top",
+    8 => "earnsolana.xyz",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -61,6 +62,10 @@ $link = [
         "faucet" => true
     ],
     $web[7] => [
+        "type" => "recaptchav2",
+        "faucet" => true
+    ],
+    $web[8] => [
         "type" => "recaptchav2",
         "faucet" => true
     ]
