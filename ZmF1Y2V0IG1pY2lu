@@ -348,7 +348,7 @@ function base_run($url,$data=0) {
     preg_match('#data-sitekey="(.*?)"#is',$r[1],$recaptchav2);
     preg_match('#data-sitekey="(.*?)"#is',$r[1],$hcaptcha);
     preg_match('#(siteUserFullName|text-truncate">)(.*?)(<)#is',$r[1],$username);
-    preg_match('#(text-warning">|</div>'.n.'<h2 class="title">|><i class="fas fa-coins"></i>|card-title text-white">)(.*?)(<)#is',$r[1],$balance);
+    preg_match('#(class="mb-0">|text-warning">|</div>'.n.'<h2 class="title">|><i class="fas fa-coins"></i>|card-title text-white">)(.*?)(<)#is',$r[1],$balance);
     preg_match_all('#hidden" name="(.*?)" value="(.*?)"#',$r[1],$t_cs);
     preg_match('#(timer|wait*)( = *)(\d+)#is',$r[1],$tmr);
     preg_match_all('#(card-title mt-0">|margin-bottom: 0px;">|class="link-name">|class="card-title">)(.*?)(<)#is',$r[1],$x);
