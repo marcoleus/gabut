@@ -25,6 +25,7 @@ $web = [
     7 => "rushbitcoin.com",
     8 => "bits-claimer.com",
     9 => "grab.tc",
+    10 => "claimbits.net",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -102,6 +103,14 @@ $link = [
     ],
     $web[9] => [
         "faucet" => "",
+        "ptc" => "?page=ptc",
+        "shortlinks" => "?page=shortlinks",
+        "type" => "recaptchav2",
+        "run_faucet" => "on",
+        "mode" => "icon"
+    ],
+    $web[10] => [
+        "faucet" => "faucet.html",
         "ptc" => "?page=ptc",
         "shortlinks" => "?page=shortlinks",
         "type" => "recaptchav2",
