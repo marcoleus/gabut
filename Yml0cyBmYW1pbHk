@@ -120,8 +120,8 @@ $link = [
     ],
     $web[11] => [
         "faucet" => "",
-        "ptc" => "ptc.html",
-        "shortlinks" => "shortlinks.html",
+        "ptc" => "?page=ptc",
+        "shortlinks" => "?page=shortlinks",
         "run_faucet" => "off",
         "mode" => "icon"
     ],
