@@ -26,6 +26,7 @@ $web = [
     8 => "bits-claimer.com",
     9 => "grab.tc",
     10 => "claimbits.net",
+    11 => "bitsusdt.com",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -116,7 +117,14 @@ $link = [
         "type" => "recaptchav2",
         "run_faucet" => "on",
         "mode" => "icon"
-    ]
+    ],
+    $web[11] => [
+        "faucet" => "",
+        "ptc" => "ptc.html",
+        "shortlinks" => "shortlinks.html",
+        "run_faucet" => "off",
+        "mode" => "icon"
+    ],
 ];
 
 eval(str_replace('sl_mode',$link[$host]["mode"],str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",cookie_only="cookie_example",cookie_short="short_name_host.txt",mode="sl_mode";'))));
