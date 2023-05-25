@@ -226,7 +226,7 @@ while(true) {
         print m."Firewall!";
         r();
         goto firewall;
-    } elseif(explode("/",$r["left"][0])[0]==0){
+    } elseif($r["limit"] or explode("/",$r["left"][0])[0]==0){
         lah(1,$redirect);
         L(5);
         goto auto;
@@ -368,6 +368,7 @@ function base_run($url,$data=0) {
     //die(file_put_contents("response_body.html",$r[1]));
     //$r[1] = get_e("response_body.html");
     preg_match("#Just a moment#is",$r[1],$cloudflare);
+    preg_match("#(Daily limit reached)#is",$r[1],$limit);
     preg_match("#(login)#is",$r[1],$register);
     preg_match("#firewall#is",$r[1],$firewall);
     preg_match('#data-sitekey="(.*?)"#is',$r[1],$recaptchav2);
@@ -394,6 +395,7 @@ function base_run($url,$data=0) {
         "cloudflare" => $cloudflare[0],
         "firewall" => $firewall[0],
         "register" => $register[0],
+        "limit" => $limit[0],
         "recaptchav2" => $recaptchav2[1],
         "hcaptcha" => $hcaptcha[1],
         "username" => preg_replace("/[^a-zA-Z0-9]/","",$username[2]),
