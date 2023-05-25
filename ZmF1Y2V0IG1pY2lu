@@ -388,7 +388,7 @@ function base_run($url,$data=0) {
     //die(file_put_contents("response_body.html",$r[1]));
     //$r[1] = get_e("response_body.html");
     preg_match("#Just a moment#is",$r[1],$cloudflare);
-    preg_match("#(Daily limit reached)#is",$r[1],$limit);
+    preg_match("#(Protecting faucet|Daily limit reached)#is",$r[1],$limit);
     preg_match("#(login)#is",$r[1],$register);
     preg_match("#firewall#is",$r[1],$firewall);
     preg_match('#data-sitekey="(.*?)"#is',$r[1],$recaptchav2);
