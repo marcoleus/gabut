@@ -27,6 +27,7 @@ $web = [
     8 => "freebitcoin.top",
     9 => "earnsolana.xyz",
     10 => "coingax.com",
+    11 => "claimtrx.com",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -79,6 +80,10 @@ $link = [
         "type" => "rscaptcha",
         "ptc" => true,
         "auto" => true
+    ],
+    $web[11] => [
+        "type" => "rscaptcha",
+        "auto" => true
     ]
 ];
 
@@ -91,7 +96,7 @@ $asu = cookie_only;
 DATA:
 $u_a = save("useragent");
 $u_c = save(cookie_only);
-$r = base_run(host."faucet");
+//$r = die(print_r(base_run(host."links")));
 
 
 dashboard:
@@ -180,14 +185,22 @@ while(true){
     }
     $r1 = base_run($r["redirect"][0]);
     tmr(2,$r1["timer"]);
+    if($link[$host]["type"] == "rscaptcha") {
+        $type = "rs_captcha_answer";
+        $methode[$request_captcha] = "icon";
+    } elseif($link[$host]["type"] == "recaptchav2") {
+        $type = "g-recaptcha-response";
+    } elseif($link[$host]["type"] == "recaptchav3") {
+        $type = "recaptchav3";
+    }
     re:
-    eval(str_replace("request_captcha(",$methode[$request_captcha]."(",'$cap=request_captcha($link[$host]["type"],$r1[$link[$host]["type"]],host."ptc");'));
+    eval(str_replace("request_captcha(",$methode[$request_captcha]."(",'$cap=request_captcha($link[$host]["type"],$r1[$link[$host]["type"]],host."ptc",$r1["res"]);'));
     if(!$cap) {
         goto re;
     }
     $data = http_build_query([
         "captcha" => $link[$host]["type"],
-        "g-recaptcha-response" => $cap,
+        $type => $cap,
         explode('"',$r1["token_csrf"][1][0])[0] => $r1["token_csrf"][2][0],
         explode('"',$r1["token_csrf"][1][1])[0] => $r1["token_csrf"][2][1]
     ]);
@@ -415,5 +428,4 @@ function base_run($url,$data=0) {
         "json" => json_decode($r[1])
     ];
 }
-
 
