@@ -77,7 +77,8 @@ $link = [
     ],
     $web[10] => [
         "type" => "rscaptcha",
-        "ptc" => true
+        "ptc" => true,
+        "auto" => true
     ]
 ];
 
