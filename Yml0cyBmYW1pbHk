@@ -318,7 +318,7 @@ while(true) {
 }
 
 function base_run($url,$data=0) {
-    $r = curl($url,hmc(),$data,true,false);
+    $r = curl($url,hmc(1),$data,true,false);
     //die(file_put_contents("response_body.html",$r));
     //$r=get_e("response_body.html");
     preg_match("#Just a moment#is",$r[1],$cloudflare);
