@@ -195,7 +195,7 @@ if($r3->status == 200) {
     print h.strip_tags($r3->message).n;
     line();
     goto ptc;
-} elseif($r3->status == 400 or $r3->status == 500) {
+} elseif($r3->status == 0 or $r3->status == 400 or $r3->status == 500) {
     print m.strip_tags($r3->message.n);
     base_run(host.$link[$host]["faucet"]);
     sleep(2);
@@ -306,7 +306,7 @@ while(true) {
             goto faucet;
         }
     } else {
-        if($r1->status == 400 or $r1->status == 500) {
+        if($r1->status == 0 or $r1->status == 400 or $r1->status == 500) {
             print m.strip_tags($r1->message.n);
             sleep(2);
             goto faucet;
