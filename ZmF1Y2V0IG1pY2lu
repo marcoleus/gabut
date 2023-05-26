@@ -297,7 +297,7 @@ while(true) {
 }
 
 
-auto:$x++;
+auto:
 $redirect = "auto";
 $x = 0;
 if($link[$host][$redirect] == true) {
@@ -319,11 +319,9 @@ while(true) {
         r();
         goto firewall;
     }
-    if(!$r["timer"]) {if($x == 3){
+    if(!$r["redirect"][0]) {
         lah(); 
         exit;
-        }
-        goto auto;
         }
         tmr(2,$r["timer"]);
         $data = http_build_query([
