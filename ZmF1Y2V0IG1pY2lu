@@ -319,10 +319,11 @@ while(true) {
         r();
         goto firewall;
     }
-    if(!$r["redirect"][0]) {
+    if($r["limit"]) {
         lah(); 
         exit;
-        }
+    }
+    if($r["limit"]) {
         tmr(2,$r["timer"]);
         $data = http_build_query([
             explode('"',$r["token_csrf"][1][0])[0] => $r["token_csrf"][2][0]
@@ -336,10 +337,7 @@ while(true) {
     if(preg_match("#good#is",$r1["notif"]) == true) {
         print h.$r1["notif"].n;
         line();
-        tmr(2,$r1["timer"]);
-        } else {
-        lah();
-        L(5);exit;
+        }
     }
 }
 
