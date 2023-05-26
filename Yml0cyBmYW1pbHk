@@ -112,8 +112,8 @@ $link = [
     ],
     $web[10] => [
         "faucet" => "faucet.html",
-        "ptc" => "?page=ptc",
-        "shortlinks" => "?page=shortlinks",
+        "ptc" => "ptc.html",
+        "shortlinks" => "shortlinks.html",
         "type" => "recaptchav2",
         "run_faucet" => "on",
         "mode" => "icon"
