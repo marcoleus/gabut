@@ -323,7 +323,7 @@ while(true) {
         lah(); 
         exit;
     }
-    if($r["limit"]) {
+    if($r["timer"]) {
         tmr(2,$r["timer"]);
         $data = http_build_query([
             explode('"',$r["token_csrf"][1][0])[0] => $r["token_csrf"][2][0]
