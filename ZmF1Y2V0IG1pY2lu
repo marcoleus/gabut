@@ -297,14 +297,14 @@ while(true) {
 }
 
 
-auto:
+auto:$x++;
 $redirect = "auto";
 $x = 0;
 if($link[$host][$redirect] == true) {
     lah(2,$redirect);
     exit;
 }
-while(true) {fresh:$x++;
+while(true) {
      $r = base_run(host."auto");
      if($r["cloudflare"]) {
         print m.sc." cloudflare!".n;
@@ -323,7 +323,7 @@ while(true) {fresh:$x++;
         lah(); 
         exit;
         }
-        goto fresh;
+        goto auto;
         }
         tmr(2,$r["timer"]);
         $data = http_build_query([
