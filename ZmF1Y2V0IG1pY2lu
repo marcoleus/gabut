@@ -320,10 +320,10 @@ while(true) {$x++;
         goto firewall;
     }
     if(!$r["timer"]) {if($x == 3){
-        lah();
-        L(5);exit;
+        lah(); 
+        exit;
         }
-        goto auto;
+        continue;
         }
         tmr(2,$r["timer"]);
         $data = http_build_query([
