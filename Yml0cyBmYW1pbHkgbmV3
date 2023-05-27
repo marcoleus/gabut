@@ -14,7 +14,7 @@ if(!$methode[$request_captcha]) {
 }
 eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
 go:
-c();$web=[1=>"sports4dbtc.com",2=>"likeafaucet.com"];
+c();$web=[1=>"sports4dbtc.com",2=>"likeafaucet.com",3=>"passivecrypto.space"];
 for($i=1;$i<50;$i++){if($web[$i]){ket($i,$web[$i]);}}
 $p=preg_replace("/[^0-9]/","",trim(tx("number")));
 $host=$web[$p];if(!$host){goto go;}
@@ -25,6 +25,9 @@ $link=[$web[1]=>["faucet"=>"roll.html","ptc"=>"ptc.html","shortlinks"=>"shortlin
 ,"mode"=>"no_icon"
 ],
 $web[2]=>["faucet"=>"roll.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"
+,"mode"=>"no_icon"
+],
+$web[3]=>["faucet"=>"roll.html","ptc"=>"ptc.html","shortlinks"=>"shortlinks.html","type"=>"recaptchav2","run_faucet"=>"on"
 ,"mode"=>"no_icon"
 ]
 ];
