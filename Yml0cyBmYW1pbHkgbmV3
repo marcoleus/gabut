@@ -131,7 +131,10 @@ preg_match('#class="(text-success)(><b>|"><b>)(.*?)</b>#is',$r[1],$balance);
 preg_match('#class="(text-primary"><b id="sidebarCoins)(>|">)(.*?)(</small>)#is',$r[1],$value);
 preg_match_all('#align-middle">(.*?)</td><tdclass="align-middletext-center"><bclass="badgebadge-dark">(.*?)</b></td><tdclass="align-middletext-center"><bclass="badgebadge-dark">(.*?)</b></td><tdclass="(text-right|align-middletext-center)">(.*?)(role|"class=)#is',trimed($r[1]),$sl);
 
-preg_match("#([a-z0-9]{64})#is",$r[1],$token);
+preg_match("#var token = '(.*?)'#is",$r[1],$token);
+    if(!$token[1]) {
+    preg_match("#([a-z0-9]{64})#is",$r[1],$token);
+    }
 preg_match('#(var secs = |id="claimTime">)([0-9]{2}|[0-9]{1})(;| h| m| s)#is',$r[1],$tmr);
 preg_match_all('#claimTime(.*?),#is',$r[1],$countdown);
 preg_match("#opensite(.*?)',#is",$r[1],$sid);
