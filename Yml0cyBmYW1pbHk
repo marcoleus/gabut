@@ -153,55 +153,47 @@ if($xxnx == 1) {
 } else {
     goto xxnx;
 }
+
+
 ptc:
-$r = base_run(host.$link[$host]["ptc"]);
-if($r["cloudflare"]) {
-    print m.sc." cloudflare!".n;
-    unlink(cookie_only);
-    goto DATA;
-} elseif($r["register"]) {
-    print m.sc." cookie expired!".n;
-    unlink(cookie_only);
-    goto DATA;
-} elseif(!$r["sid"]) {
-    lah(1,"ptc");
-    L(5);
-    goto shortlinks;
-}
-$r1 = base_run(host.str_replace("' + a + '",$r["sid"],$r["surf"]));
-L($r1["timer"]);
-$data = http_build_query(["cID" => 0,"rT" => 1,"tM" => "light"]);
-$r2 = base_run(host."system/libs/captcha/request.php",$data)["json"];
-libs:
-$x=-1;
-while(true) {$x++;if(!$r2[$x]) {
-    goto libs;
-}
-$data1 = http_build_query([
-    "cID" => 0,
-    "pC" => $r2[$x],
-    "rT" => 2
-]);
-base_run(host."system/libs/captcha/request.php",$data1);
-$data2 = http_build_query([
-    "a" => "proccessPTC",
-    "data" => $r["sid"],
-    "token" => $r1["token"],
-    "captcha-idhf" => 0,
-    "captcha-hf" => $r2[$x]
-]);
-$r3 = base_run(host."system/ajax.php",$data2)["json"];
-if($r3->status == 200) {
-    print h.strip_tags($r3->message).n;
-    line();
-    goto ptc;
-} elseif($r3->status == 0 or $r3->status == 400 or $r3->status == 500) {
-    print m.strip_tags($r3->message.n);
-    base_run(host.$link[$host]["faucet"]);
-    sleep(2);
-    goto ptc;
+while(true) {
+    $r = base_run(host.$link[$host]["ptc"]);
+    if($r["cloudflare"]) {
+        print m.sc." cloudflare!".n;
+        unlink(cookie_only);
+        goto DATA;
+    } elseif($r["register"]) {
+        print m.sc." cookie expired!".n;
+        unlink(cookie_only);
+        goto DATA;
+    } elseif(!$r["sid"]) {
+        lah(1,"ptc");
+        L(5);
+        goto shortlinks;
+    }
+    $r1 = base_run(host.str_replace("' + a + '",$r["sid"],$r["surf"]));
+    L($r1["timer"]);
+    $cap = icon_bits();
+    $data2 = http_build_query([
+        "a" => "proccessPTC",
+        "data" => $r["sid"],
+        "token" => $r1["token"],
+        "captcha-idhf" => 0,
+        "captcha-hf" => $cap
+    ]);
+    $r3 = base_run(host."system/ajax.php",$data2)["json"];
+    if($r3->status == 200) {
+        print h.strip_tags($r3->message).n;
+        line();
+        goto ptc;
+    } elseif($r3->status == 0 or $r3->status == 400 or $r3->status == 500) {
+        print m.strip_tags($r3->message.n);
+        base_run(host.$link[$host]["faucet"]);
+        sleep(2);
+        goto ptc;
     }
 }
+
 shortlinks:
 while(true) {
     $r = base_run(host.$link[$host]["shortlinks"]);
