@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 if($eval == false) {
-    eval(file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
+    eval(get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
 }
 methode:
 c();
@@ -11,7 +11,7 @@ $request_captcha=tx("number").line();
 if(!$methode[$request_captcha]){
     goto methode;
 }
-eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",file_get_contents("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
+eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
 go:
 c();
 $web = [
