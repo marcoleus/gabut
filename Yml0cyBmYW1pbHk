@@ -174,23 +174,21 @@ while(true) {
     $r1 = base_run(host.str_replace("' + a + '",$r["sid"],$r["surf"]));
     L($r1["timer"]);
     $cap = icon_bits();
-    $data2 = http_build_query([
+    $data = http_build_query([
         "a" => "proccessPTC",
         "data" => $r["sid"],
         "token" => $r1["token"],
         "captcha-idhf" => 0,
         "captcha-hf" => $cap
     ]);
-    $r3 = base_run(host."system/ajax.php",$data2)["json"];
-    if($r3->status == 200) {
-        print h.strip_tags($r3->message).n;
+    $r2 = base_run(host."system/ajax.php",$data)["json"];
+    if($r2->status == 200) {
+        print h.strip_tags($r2->message).n;
         line();
-        goto ptc;
-    } elseif($r3->status == 0 or $r3->status == 400 or $r3->status == 500) {
-        print m.strip_tags($r3->message.n);
+    } elseif($r2->status == 0 or $r2->status == 400 or $r2->status == 500) {
+        print m.strip_tags($r2->message.n);
         base_run(host.$link[$host]["faucet"]);
         sleep(2);
-        goto ptc;
     }
 }
 
