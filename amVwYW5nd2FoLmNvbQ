@@ -83,7 +83,7 @@ const host="https://jepangwah.com/",
                     print h.$wd["notif"].n;
                     line();
                 } else {
-                    print h.$wd["invalid"].n;
+                    print m.$wd["invalid"].n;
                 }
             }
             exit;
@@ -95,7 +95,7 @@ const host="https://jepangwah.com/",
             print h.$r1["notif"].n;
             line();
         } else {
-            print h.$r1["invalid"].n;
+            print m.$r1["invalid"].n;
         }
     }
     function base_run($url,$data=0) {
