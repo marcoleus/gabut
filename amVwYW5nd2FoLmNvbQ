@@ -72,11 +72,24 @@ const host="https://jepangwah.com/",
             goto shortlinks;
         } elseif(!$bypas) {
             lah(1,"shortlinks");
-            L(5);
+            $bl = base_run(host."litecoin/account.php");
+            if(explode(" ",$bl["balance"])[0] == 0) {
+                print m."balance tidak cukup untuk wd kafir!".n;
+            } else {
+                $wd = base_run(host."litecoin/account.php?withdr=fp");
+                if($wd["notif"]) {
+                    print h."mantap kafir!";
+                    r();
+                    print h.$wd["notif"].n;
+                    line();
+                }
+            }
             exit;
         }
         $r1 = base_run($bypas);
         if($r1["notif"]) {
+            print h."mantap kafir!";
+            r();
             print h.$r1["notif"].n;
             line();
         }
