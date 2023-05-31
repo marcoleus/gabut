@@ -108,11 +108,11 @@ const host="https://jepangwah.com/",
         preg_match("#HOME</a><h3>(.*?)</h3>(.*?)<h3>(.*?)</h3>(.*?)<#is",$r[1],$usr);
         preg_match_all("#<td><strong>(.*?)</strong></td><td>(.*?)</td><td>(.*?)</td><td><a class='btn btn-primary' href='(.*?)'#is",$r[1],$sl);
         preg_match("#alert-success' role='alert'>(.*?)<#is",$r[1],$n);
-        if($n[1]) {
+        if(!$n[1]) {
             preg_match('#alert-success">(.*?)<#is',$r[1],$n);
         }
         preg_match("#alert-danger' role='alert'>(.*?)<#is",$r[1],$inv);
-        if($inv[1]) {
+        if(!$inv[1]) {
         preg_match('#alert-danger">(.*?)<#is',$r[1],$inv);
         }
         preg_match("#hidden' name='(.*?)' value='(.*?)'#is",$r[1],$token);
