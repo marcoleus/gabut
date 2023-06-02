@@ -1,0 +1,183 @@
+<?php
+
+if($eval == false) {
+    eval(get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
+}
+error_reporting(0);
+methode:
+c();
+$methode = methode_captcha();
+ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
+$request_captcha = tx("number").line();
+if(!$methode[$request_captcha]) {
+    goto methode;
+}
+eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
+go:
+c();
+$web = [
+    1 => "coinfola.com",
+    2 => "coinsfarmers.com",
+];
+for($i=1;$i<50;$i++) {
+    if($web[$i]) {
+        ket($i,$web[$i]);
+    }
+}
+$p = preg_replace("/[^0-9]/","",trim(tx("number")));
+$host=$web[$p];
+if(!$host) {
+    goto go;
+}
+$link = [
+    $web[1] => [
+        "type" => "hcaptcha"
+    ],
+    $web[2] => [
+        "type" => "hcaptcha"
+    ]
+];
+eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",cookie_only="cookie_example",cookie_short="short_name_host.txt",mode="path";')));
+$asu = cookie_only;
+DATA:
+$u_a = save("useragent");
+$u_c = save(cookie_only);
+//$r = base_run(host."faucet");die(print_r($r));
+dashboard:
+$r = base_run(host."account");
+if($r["cloudflare"]) {
+    print m.sc." cloudflare!".n;
+    unlink(cookie_only);
+    goto DATA;
+} elseif(!$r["username"]) {
+    print m.sc." cookie expired!".n;
+    unlink(cookie_only);
+    goto DATA;
+}
+c().asci(sc);
+if($r["username"]){ket("username",$r["username"]);}ket("balance",$r["balance"]).line();
+
+shortlinks:
+while(true) {
+    $r = base_run(host."shortlinks");
+    if($r["cloudflare"]) {
+        print m.sc." cloudflare!".n;
+        unlink(cookie_only);
+        goto DATA;
+    } elseif(!$r["register"]) {
+        print m.sc." cookie expired!".n;
+        unlink(cookie_only);
+        goto DATA;
+    }
+    include("config.php");
+    $bypas = visit_short($r);
+    if($bypas == "refresh") {
+        goto shortlinks;
+    } elseif(!$bypas) {
+        lah(1,"shortlinks");
+        L(5);
+        goto faucet;
+    }
+    $r1 = base_run($bypas);
+    if(preg_match("#invalid#is",$r1["notif"][1][0]) == true) {
+        print m.$r1["notif"][1][0];
+        r();
+        continue;
+    } else {
+        print h.$r1["notif"][1][0].n;
+        print h.$r1["notif"][1][1].n;
+        line();
+    }
+}
+
+
+faucet:
+while(true) {
+    $r = base_run(host."faucet");
+    if($r["cloudflare"]) {
+        print m.sc." cloudflare!".n;
+        unlink(cookie_only);
+        goto DATA;
+    } elseif(!$r["register"]) {
+        print m.sc." cookie expired!".n;
+        unlink(cookie_only);
+        goto DATA;
+    }
+    if($r["timer"]) {
+        tmr(1,$r["timer"]);
+        continue;
+    }
+    if(!$r[$link[$host]["type"]]) {
+        continue;
+    }
+    refresh:
+    eval(str_replace("request_captcha(",$methode[$request_captcha]."(",'$cap=request_captcha($link[$host]["type"],$r[$link[$host]["type"]],host."faucet",$r["res"]);'));
+    if(!$cap) {
+        goto refresh;
+    }
+    $data = http_build_query([
+        $r["token_csrf"][1][0] => $r["token_csrf"][2][0],"g-recaptcha-response" => $cap,"h-captcha-response" => $cap]);
+        $r1 = base_run(host."faucet",$data);
+        if($r1["cloudflare"]) {
+            print m.sc." cloudflare!".n;
+            unlink(cookie_only);
+            goto DATA;
+        } elseif(!$r1["register"]) {
+            print m.sc." cookie expired!".n;
+            unlink(cookie_only);
+            goto DATA;
+        }
+        if(preg_match("#invalid#is",$r1["notif"][1][0]) == true) {
+            print m.$r1["notif"][1][0];
+            r();
+            continue;
+        } else {
+            print h.$r1["notif"][1][0].n;
+            line();
+        }
+    }
+    
+    function base_run($url,$data=0) {
+        $r = curl($url,head($url),$data,true,false);
+        //die(file_put_contents("response_body.html",$r[1]));
+        //$r[1] = file_get_contents("response_body.html");
+        preg_match("#Just a moment#is",$r[1],$cloudflare);
+        preg_match("#(Dashboard)#is",$r[1],$register);
+        preg_match('#data-sitekey="(.*?)"#is',$r[1],$recaptchav2);
+        preg_match('#data-sitekey="(.*?)"#is',$r[1],$hcaptcha);
+        preg_match('#('.host.'ref/)(.*?)(")#is',$r[1],$username);
+        preg_match('#(id="balance">)(.*?)(<)#is',$r[1],$balance);
+        preg_match_all('#hidden" name="(.*?)" value="(.*?)"#',$r[1],$t_cs);
+        preg_match('#(timeLeft|wait*)( = *)(\d+)#is',$r[1],$tmr);
+        preg_match_all('#(link"></i> <span class="fw-bold">)(.*?)(<)#is',$r[1],$x);
+        preg_match_all("/\b(shortlinks)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$r[1],$y);
+        preg_match_all('#(pointer"></i>)(.*?)click#is',trimed($r[1]),$z);
+        preg_match_all("#message: '(.*?)(')#is",$r[1],$n);
+        //print_r($sl);
+        //die(print_r($n));
+        return [
+            "res" => $r[1],
+            "cloudflare" => $cloudflare[0],
+            "register" => $register[0],
+            "recaptchav2" => $recaptchav2[1],
+            "hcaptcha" => $hcaptcha[1],
+            "username" => preg_replace("/[^a-zA-Z0-9]/","",$username[2]),
+            "balance" => $balance[2],
+            "token" => $token[1],
+            "timer" => $tmr[3],
+            "token_csrf" => $t_cs,
+            "visit" => $y[0],
+            "left" => $z[2],
+            "name" => $x[2],
+            "notif" => $n,
+            "url" => $r[0][0]["location"]
+        ];
+    }
+    
+    function head($referer) {
+        global $u_a,$u_c;
+        $headers[] = 'user-agent: '.$u_a;
+        $headers[] = 'referer: '.$referer;
+        $headers[] = 'cookie: '.$u_c;
+        return $headers;
+    }
