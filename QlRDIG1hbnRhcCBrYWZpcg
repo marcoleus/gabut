@@ -18,6 +18,7 @@ c();
 $web = [
     1 => "coinfola.com",
     2 => "coinsfarmers.com",
+    3 => "adhives.com",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -35,6 +36,9 @@ $link = [
     ],
     $web[2] => [
         "type" => "hcaptcha"
+    ],
+    $web[3] => [
+        "faucet" => true
     ]
 ];
 eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",cookie_only="cookie_example",cookie_short="short_name_host.txt",mode="path";')));
@@ -93,6 +97,10 @@ while(true) {
 
 faucet:
 while(true) {
+    if(!$r[$link[$host]["faucet"]] == true) {
+        lah(1,"faucet");
+        exit;
+    }
     $r = base_run(host."faucet");
     if($r["cloudflare"]) {
         print m.sc." cloudflare!".n;
