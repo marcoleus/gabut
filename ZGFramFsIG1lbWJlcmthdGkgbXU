@@ -1,0 +1,184 @@
+<?php
+
+error_reporting(0);
+
+if($eval == false) {
+
+    eval(get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
+
+}
+
+error_reporting(0);
+
+methode:
+
+c();
+
+$methode = methode_captcha();
+
+ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
+
+$request_captcha = tx("number").line();
+
+if(!$methode[$request_captcha]) {
+
+    goto methode;
+
+}
+
+eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
+
+go:
+
+c();
+
+$web = [
+
+    1 => "liteearn.com",
+
+    2 => "cryptosfaucet.top",
+
+    3 => "paidtomoney.com"
+
+];
+
+for($i=1;$i<50;$i++) {
+
+    if($web[$i]) {
+
+        ket($i,$web[$i]);
+
+    }
+
+}
+
+$p=preg_replace("/[^0-9]/","",trim(tx("number")));
+
+$host=$web[$p];
+
+if(!$host) {
+
+    goto go;
+
+}
+
+eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",cookie_only="cookie_example",cookie_short="short_name_host.txt",mode="vie_free";')));
+
+$asu = cookie_only;
+
+DATA:
+
+$u_a = save("useragent");
+
+$u_c = save(cookie_only);
+
+    c();
+
+    shortlinks:
+
+    while(true) {
+
+        $r = base_run(host."user");
+
+        if($r["cloudflare"]) {
+
+            print m.sc." cloudflare!".n;
+
+            unlink(cookie_only);
+
+            goto DATA;
+
+        } elseif($r["register"]) {
+
+            print m.sc." cookie expired!".n;
+
+            unlink(cookie_only);
+
+            goto DATA;
+
+        }
+
+        include("config.php");
+
+        $bypas = visit_short($r);
+
+        if($bypas == "refresh") {
+
+            goto shortlinks;
+
+        } elseif(!$bypas) {
+
+            lah(1,"shortlinks");
+
+            exit;
+
+        }
+
+        $r1 = base_run($bypas);
+
+        if($r1["notif"]) {
+
+            print h."mantap kafir!";
+
+            r();
+
+            print h.$r1["notif"].n;
+
+            line();
+
+        }
+
+    }
+
+    
+
+    
+
+function base_run($url,$data=0) {
+
+    $r = curl($url,hmc(),$data,true,false);
+
+    //die(file_put_contents("response_body.html",$r));
+
+    //$r[1] = get_e("response_body.html");
+
+    preg_match("#Just a moment#is",$r[1],$cloudflare);
+
+    preg_match("#login#is",$r[1],$register);
+
+    preg_match_all('#(Claim|>| )(\d+\/+\d+)#is',trimed($r[1]),$z);
+
+    preg_match('#class="alert-heading d-flex align-items-center fw-bold mb-1">(.*?)</span>#is',$r[1],$n);
+
+    preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$r[1],$u_r);
+
+    preg_match_all('#(https?:\/\/[a-zA-Z0-9\/-\/.]*\/link\/?[a-zA-Z0-9\/-\/.]*)(">)([a-zA-Z0-9.]*[a-zA-Z0-9])<#is',str_replace('"target="_blank','',trimed($r[1])),$sl);
+
+    //print_r($sl);
+
+    //die(print_r($sl));
+
+    return [
+
+        "res" => $r[1],
+
+        "cloudflare" => $cloudflare[0],
+
+        "register" => $register[0],
+
+        "visit" => $sl[1],
+
+        "left" => $z[2],
+
+        "name" => $sl[3],
+
+        "notif" => strip_tags($n[1]),
+
+        "url" => $u_r[0],
+
+        "url1" => $r[0][0]["location"],
+
+    ];
+
+}
+
