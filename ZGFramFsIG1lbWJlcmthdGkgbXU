@@ -113,7 +113,7 @@ $u_c = save(cookie_only);
             exit;
 
         }
-        L(75);
+        L(90);
         $r1 = base_run($bypas);
 
         if($r1["notif"]) {
