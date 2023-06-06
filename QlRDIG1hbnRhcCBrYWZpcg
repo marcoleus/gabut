@@ -107,8 +107,8 @@ while(true) {
 
 faucet:
 while(true) {
-    if(!$link[$host]["faucet"] == true) {
-        lah(1,"faucet");
+    if($link[$host]["faucet"] == true) {
+        lah(2,"faucet");
         exit;
     }
     $r = base_run(host."faucet");
