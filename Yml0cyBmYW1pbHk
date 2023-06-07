@@ -125,7 +125,7 @@ $link = [
         "shortlinks" => "?page=shortlinks",
         "run_faucet" => "off",
         "mode" => "icon"
-    ],,
+    ],
     $web[12] => [
         "faucet" => "",
         "ptc" => "?page=ptc",
