@@ -30,6 +30,7 @@ $web = [
     11 => "claimtrx.com",
     12 => "feyorra.top",
     13 => "cryptobigpay.online",
+    14 => "crypto2u.xyz",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -95,6 +96,12 @@ $link = [
     $web[13] => [
         "type" => "hcaptcha",
         "faucet" => true,
+        "ptc" => true
+    ],
+    $web[14] => [
+        "type" => "hcaptcha",
+        "faucet" => true,
+        "auto" => true,
         "ptc" => true
     ]
 ];
