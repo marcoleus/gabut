@@ -29,6 +29,7 @@ $web = [
     10 => "coingax.com",
     11 => "claimtrx.com",
     12 => "feyorra.top",
+    13 => "cryptobigpay.online",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -90,6 +91,11 @@ $link = [
     $web[12] => [
         "type" => "recaptchav2",
         "auto" => true,
+    ],
+    $web[13] => [
+        "type" => "hcaptcha",
+        "faucet" => true,
+        "ptc" => true
     ]
 ];
 
@@ -390,7 +396,7 @@ function base_run($url,$data=0) {
     preg_match("#firewall#is",$r[1],$firewall);
     preg_match('#data-sitekey="(.*?)"#is',$r[1],$recaptchav2);
     preg_match('#data-sitekey="(.*?)"#is',$r[1],$hcaptcha);
-    preg_match('#(siteUserFullName|text-truncate">)(.*?)(<)#is',$r[1],$username);
+    preg_match('#(text-truncate" style="color:FFFFFF;">|siteUserFullName|text-truncate">)(.*?)(<)#is',str_replace("#","",$r[1]),$username);
     preg_match('#(class="fw-bold">|class="mb-3 font-18">|class="mb-0">|text-warning">|</div>'.n.'<h2 class="title">|><i class="fas fa-coins"></i>|card-title text-white">)(.*?)(<)#is',$r[1],$balance);
     preg_match_all('#hidden" name="(.*?)" value="(.*?)"#',$r[1],$t_cs);
     preg_match('#(timer|wait*)( = *)(\d+)#is',$r[1],$tmr);
