@@ -19,7 +19,8 @@ $web = [
     1 => "coinfola.com",
     2 => "coinsfarmers.com",
     3 => "adhives.com",
-    4 => "clickscoin.com"
+    4 => "clickscoin.com",
+    5 => "faucetbtcclaim.com"
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -43,6 +44,9 @@ $link = [
     ],
     $web[4] => [
         "type" => "recaptchav2"
+    ],
+    $web[5] => [
+        "faucet" => true
     ]
 ];
 eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",cookie_only="cookie_example",cookie_short="short_name_host.txt",mode="path";')));
