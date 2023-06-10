@@ -90,8 +90,9 @@ $link = [
         "faucet" => true
     ],
     $web[12] => [
-        "type" => "recaptchav2",
-        "auto" => true,
+        "type" => "rscaptcha",
+        "ptc" => true,
+        "auto" => true
     ],
     $web[13] => [
         "type" => "hcaptcha",
