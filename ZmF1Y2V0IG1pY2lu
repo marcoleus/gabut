@@ -86,12 +86,10 @@ $link = [
     ],
     $web[11] => [
         "type" => "rscaptcha",
-        "auto" => true,
-        "faucet" => true
+        "auto" => true
     ],
     $web[12] => [
         "type" => "rscaptcha",
-        "ptc" => true,
         "auto" => true
     ],
     $web[13] => [
