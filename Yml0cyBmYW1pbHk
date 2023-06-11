@@ -198,6 +198,7 @@ while(true) {
         print m.strip_tags($r2->message.n);
         base_run(host.$link[$host]["faucet"]);
         sleep(2);
+        goto shortlinks;
     }
 }
 
