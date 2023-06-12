@@ -9,7 +9,7 @@ methode:
 c();
 $methode = methode_captcha();
 ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
-$request_captcha = tx("number").line();
+$request_captcha = 1;c();//tx("number").line();
 if(!$methode[$request_captcha]) {
     goto methode;
 }
