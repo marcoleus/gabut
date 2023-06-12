@@ -407,11 +407,11 @@ function base_run($url,$data=0) {
     preg_match("#firewall#is",$r[1],$firewall);
     preg_match('#data-sitekey="(.*?)"#is',$r[1],$recaptchav2);
     preg_match('#data-sitekey="(.*?)"#is',$r[1],$hcaptcha);
-    preg_match('#(text-truncate" style="color:FFFFFF;">|siteUserFullName|text-truncate">)(.*?)(<)#is',str_replace("#","",$r[1]),$username);
-    preg_match('#(class="fw-bold">|class="mb-3 font-18">|class="mb-0">|text-warning">|</div>'.n.'<h2 class="title">|><i class="fas fa-coins"></i>|card-title text-white">)(.*?)(<)#is',$r[1],$balance);
+    preg_match('#(class="blue">|text-truncate" style="color:FFFFFF;">|siteUserFullName|text-truncate">)(.*?)(<)#is',str_replace("#","",$r[1]),$username);
+    preg_match('#(<div>'.n.'              <h4>|class="fw-bold">|class="mb-3 font-18">|class="mb-0">|text-warning">|</div>'.n.'<h2 class="title">|><i class="fas fa-coins"></i>|card-title text-white">)(.*?)(<)#is',$r[1],$balance);
     preg_match_all('#hidden" name="(.*?)" value="(.*?)"#',$r[1],$t_cs);
     preg_match('#(timer|wait*)( = *)(\d+)#is',$r[1],$tmr);
-    preg_match_all('#(title text-center">|card-title mt-0">|margin-bottom: 0px;">|class="link-name">|class="card-title">)(.*?)(<)#is',$r[1],$x);
+    preg_match_all('#(class="card-claim"><h5>|titletext-center">|card-titlemt-0">|margin-bottom:0px;">|class="link-name">|class="card-title">)(.*?)(<)#is',trimed($r[1]),$x);
     preg_match_all('#(https?:\/\/[a-zA-Z0-9\/-\/.]*\/go\/?[a-zA-Z0-9\/-\/.]*)(.*?)#is',$r[1],$y);
     preg_match_all('#(>| )(\d+\/+\d+)#is', str_replace(str_split('({['),'',$r[1]),$z);
     preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$r[1],$u_r);
