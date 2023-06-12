@@ -31,6 +31,7 @@ $web = [
     12 => "feyorra.top",
     13 => "cryptobigpay.online",
     14 => "crypto2u.xyz",
+    15 => "faucet4u.com",
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -102,7 +103,11 @@ $link = [
         "faucet" => true,
         "auto" => true,
         "ptc" => true
-    ]
+    ],
+    $web[15] => [
+        "ptc" => true,
+        "faucet" => true,
+    ],
 ];
 
 
