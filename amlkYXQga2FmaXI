@@ -53,7 +53,11 @@ while(true) {
         unlink(cookie_only);
         continue;
     }
+    fix:
     $r2 = base_run($bypass);
+    if(!$r2["recaptchav2"]) {
+        goto fix;
+    }
     re:
     eval(str_replace("request_captcha(",$methode[$request_captcha]."(",'$cap=request_captcha("recaptchav2",$r2["recaptchav2"],host);'));
     if(!$cap) {
