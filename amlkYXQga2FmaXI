@@ -1,15 +1,15 @@
 <?php
 
-
 if($eval == false) {
     eval(get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
 }
+
 error_reporting(0);
 methode:
 c();
-$methode = methode_captcha();
-ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
-$request_captcha = 1;c();//tx("number").line();
+$methode = methode_captcha();ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
+$request_captcha = 1;
+c();//tx("number").line();
 if(!$methode[$request_captcha]) {
     goto methode;
 }
@@ -19,61 +19,64 @@ $web = [
     "trx.hect.online",
     "dgb.hect.online"
 ];
-
-$addres = save("address");
-c();
 go:
-for($i=0;$i<50;$i++) {
-    $host = $web[$i];
-    if(!$host) {
-        tmr(1,5*60);
-        goto go;
+for($i=0;$i<10;$i++) {
+    if($web[$i]) {
+        ket($i+1,explode(".",$web[$i])[0]);
     }
-    eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",cookie_only="cookie_example.txt",cookie_short="short_name_host.txt";')));
-    $asu = cookie_only;
-    //die(print_r(base_run($host)));
-    $host = "https://".$web[0]."/";
-    shorlinks:
-    $r = base_run($host."?r=1GgQScbbdtAfUQVbrL4wtA4UEP275GSwsr");
+}
+$p = preg_replace("/[^0-9]/","",trim(tx("number")));
+$host = $web[$p-1];
+if(!$host) {
+    goto go;
+}
+c();
+$address = save("address");
+eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="Eurofaucet",cookie_only="cookie_example.txt",cookie_short="short_name_host.txt";')));
+$asu = cookie_only;
+//die(print_r(base_run($host)));
+c().asci(sc).ket("address",$address).line();
+while(true) {
+    $r = base_run(host."?r=1GgQScbbdtAfUQVbrL4wtA4UEP275GSwsr");
     if($r["cloudflare"]) {
         die(m.sc." cloudflare!".n);
     }
-    $r1 = base_run($host.$r["visit"]);
+    if($r["left"] == 0) {
+        die(m."claims have reached the limit".n);
+    }
+    $r1 = base_run(host.$r["visit"]);
     if($r1["wait"]) {tmr(1,$r1["wait"]*60+60);
-        goto shorlinks;
+        continue;
     }
     $bypass = bypass_shortlinks($r1["url"]);
     if(!$bypass) {
         unlink(cookie_only);
-        goto shorlinks;
+        continue;
     }
     $r2 = base_run($bypass);
     re:
-    eval(str_replace("request_captcha(",$methode[$request_captcha]."(",'$cap=request_captcha("recaptchav2",$r2["recaptchav2"],$host);'));
+    eval(str_replace("request_captcha(",$methode[$request_captcha]."(",'$cap=request_captcha("recaptchav2",$r2["recaptchav2"],host);'));
     if(!$cap) {
         goto re;
     }
     $data = http_build_query([
-        $r2["token"] => $addres,
+        $r2["token"] => $address,
         "g-recaptcha-response" => $cap
     ]);
-    $r3 = base_run($host,$data);
-    if($r3["notif"]) {
+    $r3 = base_run(host,$data);
+    if(preg_match("#sent#is",$r3["notif"]) == true) {
         print h."mantap kafir!";
         r();
         print h.$r3["notif"].n;
         line();
-        unlink(cookie_only);
-        if(!$web[$i+1]) {
-            tmr(1,5*70);
-            goto go;
+        tmr(1,5*70);
+    } else {
+        if(preg_match("#transaction#is",$r3["notif"]) == true) {
+            die(m.$r3["notif"].n);
         }
+        print m.$r3["notif"];r();
     }
 }
-
-    
-
-    
 
 function base_run($url,$data=0) {
     $r = curl($url,hac(),$data,true,cookie_only);
@@ -82,21 +85,21 @@ function base_run($url,$data=0) {
     preg_match("#Just a moment#is",$r[1],$cloudflare);
     preg_match('#g-recaptcha" data-sitekey="(.*?)">#is',$r[1],$recaptchav2);
     preg_match('#type="text" name="(.*?)"#is',$r[1],$token);
-    preg_match("#<br />(\d+)#is",$r[1],$x);
+    preg_match("#<br />(\d+)#is",$r[1],$left);
     preg_match("#wait (\d+)#is",$r[1],$wait);
     preg_match("#href','(.*?)'#is",$r[1],$sl);
-    preg_match('#<div class="alert alert-success">(.*?)</a>.#is',$r[1],$n);
+    preg_match('#<div class="alert alert-(success|danger)">(.*?)(</a>.|.</div>)#is',$r[1],$n);
     //print_r($sl);
-    //die(print_r($t));
+    //die(print_r($x));
     return [
         "res" => $r[1],
+        "left" => $left[1],
         "cloudflare" => $cloudflare[0],
         "visit" => $sl[1],
-        "left" => $x[1],
         "wait" => $wait[1],
         "token" => $token[1],
         "recaptchav2" => $recaptchav2[1],
-        "notif" => strip_tags($n[1]),
+        "notif" => strip_tags($n[2]),
         "url" => $r[0][0]["location"],
     ];
 }
