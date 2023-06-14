@@ -34,6 +34,9 @@ c();
 $address = save("address");
 eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="Eurofaucet",cookie_only="cookie_example.txt",cookie_short="short_name_host.txt";')));
 $asu = cookie_only;
+if(file(cookie_short)) {
+    unlink(cookie_only);
+}
 //die(print_r(base_run($host)));
 c().asci(sc).ket("address",$address).line();
 while(true) {
