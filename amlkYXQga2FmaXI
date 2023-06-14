@@ -75,7 +75,7 @@ while(true) {
         line();
         tmr(1,5*70);
     } else {
-        if(preg_match("#transaction#is",$r3["notif"]) == true) {
+        if(preg_match("#transaction|daily#is",$r3["notif"]) == true) {
             die(m.$r3["notif"].n);
         }
         print m.$r3["notif"];r();
