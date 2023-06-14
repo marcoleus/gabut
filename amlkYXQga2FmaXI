@@ -40,7 +40,7 @@ if(file(cookie_only)) {
 //die(print_r(base_run($host)));
 c().asci(sc).ket("address",$address).line();
 while(true) {
-    $r = base_run(host."?r=1GgQScbbdtAfUQVbrL4wtA4UEP275GSwsr");
+    $r = base_run(host."?r=1DPfEkae8PjHBKsLWyrVEwrLiyE2qRw9nK");
     if($r["cloudflare"]) {
         die(m.sc." cloudflare!".n);
     }
