@@ -32,7 +32,8 @@ $web = [
     13 => "cryptobigpay.online",
     14 => "crypto2u.xyz",
     15 => "faucet4u.com",
-    16 => "bazadecrypto.com"
+    16 => "bazadecrypto.com",
+    17 => "allfaucet.xyz"
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -113,6 +114,9 @@ $link = [
     $web[16] => [
         "ptc" => true,
         "faucet" => true,
+    ],
+    $web[17] => [
+        "type" => "recaptchav2"
     ],
 ];
 
