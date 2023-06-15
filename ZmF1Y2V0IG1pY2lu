@@ -34,7 +34,7 @@ $web = [
     15 => "faucet4u.com",
     16 => "bazadecrypto.com",
     17 => "allfaucet.xyz",
-    18 => "spaceshooter.net"
+    18 => "tree-bucks.com"
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -119,9 +119,8 @@ $link = [
     $web[17] => [
         "type" => "recaptchav2"
     ],
-    $web[17] => [
+    $web[18] => [
         "type" => "recaptchav2",
-        "ptc" => true,
         "faucet" => true
     ],
 ];
