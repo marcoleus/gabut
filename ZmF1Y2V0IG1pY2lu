@@ -94,7 +94,7 @@ $link = [
         "auto" => true
     ],
     $web[12] => [
-        "type" => "rscaptcha",
+        "type" => "recaptchav2",
         "auto" => true
     ],
     $web[13] => [
