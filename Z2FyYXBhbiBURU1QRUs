@@ -17,7 +17,8 @@ eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("
 $web = [
     "btc.hect.online",
     "trx.hect.online",
-    "dgb.hect.online"
+    "dgb.hect.online",
+    "starcrypto.io/ltc"
 ];
 go:
 for($i=0;$i<10;$i++) {
@@ -32,7 +33,7 @@ if(!$host) {
 }
 c();
 $address = save("address");
-eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="Eurofaucet",cookie_only="cookie_example.txt",cookie_short="short_name_host.txt";')));
+eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="instanpay",cookie_only="cookie_example.txt",cookie_short="short_name_host.txt";')));
 $asu = cookie_only;
 if(file(cookie_only)) {
     unlink(cookie_only);
