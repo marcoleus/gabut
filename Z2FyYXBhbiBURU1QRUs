@@ -17,7 +17,8 @@ eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("
 $web = [
     "btc.hect.online",
     "trx.hect.online",
-    "dgb.hect.online"
+    "dgb.hect.online",
+    "freeltc.xyz"
 ];
 go:
 for($i=0;$i<10;$i++) {
