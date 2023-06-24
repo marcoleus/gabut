@@ -1,0 +1,106 @@
+<?php
+
+if($eval == false) {
+    eval(get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
+}
+
+error_reporting(0);
+methode:
+c();
+$methode = methode_captcha();
+ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
+$request_captcha = 1;
+c();
+//tx("number").line();
+if(!$methode[$request_captcha]) {
+    goto methode;
+}
+eval(str_replace("request_captcha(",$methode[$request_captcha]."(",str_replace("<?php","",get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_shortlinks.php"))));
+$host = "oscut.fun";
+eval(str_replace('name_host',explode(".",$host)[0],str_replace('example',$host,'const host="https://example/",sc="name_host",cookie_only="cookie_example.txt",cookie_short="short_name_host.txt",mode="vie_free";')));
+$asu = cookie_only;
+dashboard:
+$email = save("email");
+$r = base_run(host);
+if($r["cloudflare"]) {
+    die(m.sc." cloudflare!".n);
+} elseif($r["login"]) {
+    print m.sc." cookie expired!".n;
+    unlink(cookie_only);
+    $r = base_run(host);
+    $data = http_build_query([
+        "wallet" => $email,
+        explode('"',$r["token_csrf"][1][0])[0] => $r["token_csrf"][2][0]
+    ]);
+    $r1 = base_run(host."auth/login",$data);
+    if(preg_match("#Success#is",$r1["notif"]) == true) {
+        print h.$r1["notif"];
+        r();
+    } else {
+        print m.$r1["notif"];
+        r();
+        goto dashboard;
+    }
+}
+c().asci(sc);ket("email",$email).line();
+//goto faucet;
+$link = $r["links"];
+for ($z = 0;$z<count($link);$z++) {
+    shortlinks:
+    $r = base_run($link[$z]);
+    if($r["cloudflare"]) {
+        die(m.sc." cloudflare!".n);
+    } elseif($r["login"]) {
+        goto dashboard;
+    } elseif($r["limit"]) {
+        goto next;
+    }
+    include("config.php");
+    $bypas = visit_short($r);
+    if($bypas == "refresh") {
+        goto shortlinks;
+    } elseif(!$bypas) {
+        goto next;
+    }
+    $r1 = base_run($bypas);
+    if(preg_match("#sent#is",$r1["notif"]) == true) {
+        print h.$r1["notif"].n;
+        line();
+    } else {
+        print m.$r1["notif"];
+        r();
+    }
+    next:
+}
+die(lah(1,"shortlinks"));
+
+function base_run($url,$data=0) {
+    $r = curl($url,hac(),$data,true,cookie_only);
+    //die(file_put_contents("response_body.html",$r[1]));
+    //$r[1] = get_e("response_body.html");
+    preg_match("#Just a moment#is",$r[1],$cloudflare);
+    preg_match("#(empty)#is",$r[1],$limit);
+    preg_match("#(login)#is",$r[1],$login);
+    preg_match_all('#hidden" name="(.*?)" value="(.*?)"#',$r[1],$t_cs);
+    preg_match_all('#(card-titlemt-0">)(.*?)(<)#is',trimed($r[1]),$x);
+    preg_match_all('#(https?:\/\/[a-zA-Z0-9\/-\/.-]*\/go\/?[a-zA-Z0-9\/-\/.]*)(.*?)#is',$r[1],$y);
+    preg_match_all('#(>| )(\d+\/+\d+)#is', str_replace(str_split('({['),'',$r[1]),$z);
+    preg_match_all('#(title|html):(.*?)(,)#is',$r[1],$n);
+    preg_match_all('#(https?:\/\/[a-zA-Z0-9\/-\/.-]*\/links\/currency\/?[a-zA-Z0-9\/-\/.]*)(.*?)#is',$r[1],$links);
+    preg_match_all('#(https?:\/\/[a-zA-Z0-9\/-\/.-]*\/go\/?[a-zA-Z0-9\/-\/.]*)(.*?)#is',$r[1],$y);
+    //print_r($sl);
+    //die(print_r($xx)));
+    return [
+        "res" => $r[1],
+        "cloudflare" => $cloudflare[0],
+        "login" => $login[0],
+        "limit" => $limit[0],
+        "token_csrf" => $t_cs,
+        "visit" => $y[0],
+        "left" => $z[2],
+        "name" => $x[2],
+        "notif" => preg_replace("/[^a-zA-Z0-9-!. ]/","",$n[2][0].$n[2][1]),
+        "url1" => $r[0][0]["location"],
+        "links" => $links[0]
+    ];
+}
