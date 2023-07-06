@@ -293,11 +293,11 @@ while(true) {
         "response" => $cap
     ]);
     $r1 = base_run(host."system/ajax.php",$data)["json"];
-    if(preg_match("#Shortlink#is",$r1->message == true)) {
+    if(preg_match("#Shortlink#is",$r1->message) == true) {
         print m.$r1->message.n;
         line().tx("enter to continue");
         goto ptc;
-    } elsif($r1->reward == true) {
+    } elseif($r1->reward == true) {
         $reward=explode(", ",strip_tags($r1->message));
         $r3 = base_run(host.$link[$host]["faucet"]);
         if($r3["cloudflare"]) {
