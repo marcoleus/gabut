@@ -293,7 +293,7 @@ while(true) {
         "response" => $cap
     ]);
     $r1 = base_run(host."system/ajax.php",$data)["json"];
-    if(preg_match("#Shortlink#is",$r1->message) == true) {
+    if(preg_match("#Shortlink#is",$r1->message == true)) {
         print m.$r1->message.n;
         line().tx("enter to continue");
         goto ptc;
