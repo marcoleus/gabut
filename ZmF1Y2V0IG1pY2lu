@@ -34,7 +34,9 @@ $web = [
     15 => "faucet4u.com",
     16 => "bazadecrypto.com",
     17 => "allfaucet.xyz",
-    18 => "tree-bucks.com"
+    18 => "tree-bucks.com",
+    19 => "faucet.javocoin.com",
+    20 => "gulio.site"
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -123,6 +125,17 @@ $link = [
     $web[18] => [
         "type" => "recaptchav2",
         "faucet" => true
+    ],
+    $web[19] => [
+        "type" => "hcaptcha",
+        "ptc" => true,
+        "auto" => true,
+        "faucet" => true
+    ],
+    $web[20] => [
+        "type" => "recaptchav2",
+        "ptc" => true,
+        "auto" => true
     ],
 ];
 
