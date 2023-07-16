@@ -20,7 +20,8 @@ $web = [
     2 => "coinsfarmers.com",
     3 => "adhives.com",
     4 => "clickscoin.com",
-    5 => "faucetbtcclaim.com"
+    5 => "faucetbtcclaim.com",
+    6 => "cryptohits.io"
 ];
 for($i=1;$i<50;$i++) {
     if($web[$i]) {
@@ -46,6 +47,9 @@ $link = [
         "type" => "recaptchav2"
     ],
     $web[5] => [
+        "faucet" => true
+    ],
+    $web[6] => [
         "faucet" => true
     ]
 ];
