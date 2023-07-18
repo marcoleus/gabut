@@ -291,14 +291,10 @@ while(true) {
         print m."Firewall!";
         r();
         goto firewall;
-    } elseif($r["antb"] == true){
+    } elseif($r["limit"] or explode("/",$r["left"][0])[0] == 0 or $r["antb"] == true){
         lah(1,$redirect);
         L(5);
         goto auto;
-    } elseif(preg_match("#good#is",$r1["notif"]) == true) {
-        print h.$r1["notif"].n;
-        line();
-        tmr(1,$r1["timer"]);
     }
     if($r["timer"]) {
     if($r["timer"] == 6){
