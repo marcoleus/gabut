@@ -51,7 +51,6 @@ if(!$host) {
 $link = [
     $web[1] => [
         "type" => "recaptchav2",
-        "faucet" => true
     ],
     $web[2] => [
         "type" => "recaptchav2"
@@ -292,11 +291,15 @@ while(true) {
         print m."Firewall!";
         r();
         goto firewall;
-    } elseif($r["limit"] or explode("/",$r["left"][0])[0]==0){
+    } elseif($r["antb"] == true){
         lah(1,$redirect);
         L(5);
         goto auto;
-        }
+    } elseif(preg_match("#good#is",$r1["notif"]) == true) {
+        print h.$r1["notif"].n;
+        line();
+        tmr(1,$r1["timer"]);
+    }
     if($r["timer"]) {
     if($r["timer"] == 6){
     } else {
@@ -451,6 +454,7 @@ function base_run($url,$data=0) {
     }
     preg_match_all("#(https?:\/\/[a-z\/.]*)(verify|ptc\/view|achievements\/claim*)(\/?[a-z0-9\/]*)(.*?)#is",$r[1],$redirect);
     preg_match('#(Ads <small class="sidebar_badge one">|Ads <small class="badge badge-danger">|50a5f1;">|badge-warning">|ms-2 orange">|badge-primary">|purple ms-auto">)(\d+)#is',$r[1],$p);
+    preg_match_all('#rel=\\\"(.*?)\\\">#is',$r[1],$ab);
     //print_r($sl);
     //die(print_r($xx)));
     return [
@@ -474,7 +478,8 @@ function base_run($url,$data=0) {
         "url" => $u_r[0],
         "url1" => $r[0][0]["location"],
         "redirect"=>$redirect[0],
-        "json" => json_decode($r[1])
+        "json" => json_decode($r[1]),
+        "antb" => $ab[1][0]
     ];
 }
 
