@@ -171,7 +171,7 @@ while(true) {
     $data = http_build_query([
         explode('"',$r["token_csrf"][1][0])[0] => $r["token_csrf"][2][0],
         explode('"',$r["token_csrf"][1][1])[0] => $r["token_csrf"][2][1],
-        antibotlinks => implode(" ",$r["antb"][0]),
+        "antibotlinks" => implode(" ",$r["antb"][0]),
         "utt" => "",
         "captcha" => "recaptchav2",
         "g-recaptcha-response" => ""
