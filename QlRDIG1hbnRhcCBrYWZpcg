@@ -7,8 +7,8 @@ error_reporting(0);
 methode:
 c();
 $methode = methode_captcha();
-ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
-$request_captcha = tx("number").line();
+//ket("","bypass methode",1,$methode[1],2,$methode[2],3,$methode[3]);
+$request_captcha = 1;//tx("number").line();
 if(!$methode[$request_captcha]) {
     goto methode;
 }
@@ -176,7 +176,7 @@ function base_run($url,$data=0) {
     preg_match_all('#hidden" name="(.*?)" value="(.*?)"#',$r[1],$t_cs);
     preg_match('#(timeLeft|wait*)( = *)(\d+)#is',$r[1],$tmr);
     preg_match_all('#(style="font-size: 18px;">|link"></i> <span class="fw-bold">)(.*?)(<)#is',$r[1],$x);
-    preg_match_all("/\b(shortlinks)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$r[1],$y);
+    preg_match_all("/\b(shortlinks)[-a-z0-9+&@#\/%?=~_|!:,.;]*(=)[-a-z0-9+&@#\/%=~_|]/i",$r[1],$y);
     preg_match_all('#(fa-computer-mouse"style="color:ffc800;"></i></div><p>|pointer"></i>)(.*?)click#is',str_replace("#","",trimed($r[1])),$z);
     preg_match_all("#message: '(.*?)(')#is",$r[1],$n);
     //print_r($sl);
