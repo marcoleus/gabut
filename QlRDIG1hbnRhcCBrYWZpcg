@@ -176,7 +176,8 @@ function base_run($url,$data=0) {
     preg_match_all('#hidden" name="(.*?)" value="(.*?)"#',$r[1],$t_cs);
     preg_match('#(timeLeft|wait*)( = *)(\d+)#is',$r[1],$tmr);
     preg_match_all('#(style="font-size: 18px;">|link"></i> <span class="fw-bold">)(.*?)(<)#is',$r[1],$x);
-    preg_match_all("/\b(shortlinks)[-a-z0-9+&@#\/%?=~_|!:,.;]*(=)[a-z0-9+&@#\/%=~_|]/i",$r[1],$y);
+    //preg_match_all("/\b(shortlinks)[-a-z0-9+&@#\/%?=~_|!:,.;]*(=)[a-z0-9+&@#\/%=~_|]/i",$r[1],$y);
+    preg_match_all("/\b(shortlinks)[-a-z0-9+&@#\/%?=~_|!:,.;]*(=?[0-9])/i",$r[1],$y);
     preg_match_all('#(fa-computer-mouse"style="color:ffc800;"></i></div><p>|pointer"></i>)(.*?)click#is',str_replace("#","",trimed($r[1])),$z);
     preg_match_all("#message: '(.*?)(')#is",$r[1],$n);
     //print_r($sl);
